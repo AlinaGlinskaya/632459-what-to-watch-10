@@ -1,7 +1,21 @@
 import React from 'react';
-import FilmsList from '../../components/films-list/films-list';
+import FilmsMain from '../../components/films-main/films-main';
 
-function MainScreen(): JSX.Element {
+type Img = string;
+type Alt = string;
+type Title = string;
+type Genre = string;
+type Year = number;
+
+type MainScreenProps = {
+  img: Img,
+  alt: Alt,
+  title: Title,
+  genre: Genre,
+  year: Year
+}
+
+function MainScreen(props: MainScreenProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -35,14 +49,14 @@ function MainScreen(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={props.img} alt={props.alt} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{props.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{props.genre}</span>
+                <span className="film-card__year">{props.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -102,7 +116,7 @@ function MainScreen(): JSX.Element {
             </li>
           </ul>
 
-          <FilmsList></FilmsList>
+          <FilmsMain></FilmsMain>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

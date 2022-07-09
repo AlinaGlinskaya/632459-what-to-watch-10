@@ -1,15 +1,16 @@
-import FilmCard from '../../components/film-card/film-card';
+import FilmCard from '../film-card/film-card';
 
+type Id = number;
 type Title = string;
 type Img = string;
 
-type FilmList = {
-  id: number
+type FilmsList = {
+  id: Id,
   title: Title,
   img: Img,
 }[];
 
-const films: FilmList = [
+const films: FilmsList = [
   {
     id: 0,
     title: 'Fantastic Beasts: The Crimes of Grindelwald',
@@ -112,7 +113,7 @@ const films: FilmList = [
   }
 ];
 
-function FilmsList() {
+function FilmsMain() {
   const items = films.map((item) => <FilmCard title={item.title} img={item.img} key={item.id}></FilmCard>);
   return (
     <div className="catalog__films-list">
@@ -121,4 +122,4 @@ function FilmsList() {
   );
 }
 
-export default FilmsList;
+export default FilmsMain;

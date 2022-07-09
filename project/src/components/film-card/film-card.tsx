@@ -1,6 +1,9 @@
+type Title = string;
+type Img = string;
+
 type FilmCardProps = {
-  title: string,
-  img: string,
+  title: Title,
+  img: Img,
 }
 
 function FilmCard(props: FilmCardProps) {
