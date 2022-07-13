@@ -1,21 +1,8 @@
 import React from 'react';
 import FilmsMain from '../../components/films-main/films-main';
+import {AppScreenProps} from '../../types/types';
 
-type Img = string;
-type Alt = string;
-type Title = string;
-type Genre = string;
-type Year = number;
-
-type MainScreenProps = {
-  img: Img,
-  alt: Alt,
-  title: Title,
-  genre: Genre,
-  year: Year
-}
-
-function MainScreen(props: MainScreenProps): JSX.Element {
+function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -49,14 +36,14 @@ function MainScreen(props: MainScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={props.img} alt={props.alt} width="218" height="327" />
+              <img src={promoFilm.img} alt={promoFilm.alt} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.title}</h2>
+              <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.year}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -116,7 +103,7 @@ function MainScreen(props: MainScreenProps): JSX.Element {
             </li>
           </ul>
 
-          <FilmsMain></FilmsMain>
+          <FilmsMain films={films}></FilmsMain>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

@@ -1,13 +1,9 @@
 import MainScreen from '../../pages/main-screen/main-screen';
+import {AppScreenProps} from '../../types/types';
 
-function App(): JSX.Element {
+function App(props: AppScreenProps): JSX.Element {
   return (
-    <MainScreen img="img/the-grand-budapest-hotel-poster.jpg"
-      alt="The Grand Budapest Hotel poster"
-      title="The Grand Budapest Hotel"
-      genre="Drama"
-      year={2014}
-    />);
+    <MainScreen promoFilm={props.promoFilm} films={props.films}/>);
 }
 
 export default App;
