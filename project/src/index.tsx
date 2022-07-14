@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {FilmsList} from './types/types';
+import {FilmsMainProps} from './types/types';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -15,7 +15,7 @@ const film = {
   year: 2014
 };
 
-const films: FilmsList = [
+const films: FilmsMainProps = [
   {
     id: 0,
     title: 'Fantastic Beasts: The Crimes of Grindelwald',

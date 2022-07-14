@@ -103,7 +103,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
             </li>
           </ul>
 
-          <FilmsMain films={films}></FilmsMain>
+          <FilmsMain films={films} promoFilm={promoFilm}></FilmsMain>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

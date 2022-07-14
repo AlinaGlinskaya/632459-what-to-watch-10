@@ -1,9 +1,9 @@
 import MainScreen from '../../pages/main-screen/main-screen';
 import {AppScreenProps} from '../../types/types';
 
-function App(props: AppScreenProps): JSX.Element {
+function App({promoFilm, films}: AppScreenProps): JSX.Element {
   return (
-    <MainScreen promoFilm={props.promoFilm} films={props.films}/>);
+    <MainScreen promoFilm={promoFilm} films={films}/>);
 }
 
 export default App;
