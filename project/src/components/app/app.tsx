@@ -11,7 +11,32 @@ import {AppScreenProps} from '../../types/types';
 
 function App({promoFilm, films}: AppScreenProps): JSX.Element {
   return (
-    <MainScreen promoFilm={promoFilm} films={films}/>);
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm} films={films}/>}
+        />
+        <Route
+          path={AppRoute.AddReview} element={<AddReviewScreen />}
+        />
+        <Route
+          path={AppRoute.Film} element={<MoviePageScreen />}
+        />
+        <Route
+          path={AppRoute.MyList} element={<MyListScreen />}
+        />
+        <Route
+          path={AppRoute.Player} element={<PlayerScreen />}
+        />
+        <Route
+          path={AppRoute.SignIn} element={<SignInScreen />}
+        />
+        <Route
+          path="*" element={<NotFoundScreen />}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
