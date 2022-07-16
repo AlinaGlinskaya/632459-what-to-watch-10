@@ -1,4 +1,6 @@
 import {FilmCardProps} from '../../types/types';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 function FilmCard({img, title}: FilmCardProps) {
   return (
@@ -7,7 +9,7 @@ function FilmCard({img, title}: FilmCardProps) {
         <img src={img} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{title}</a>
+        <Link to={AppRoute.Film} className="small-film-card__link">{title}</Link>
       </h3>
     </article>
   );
