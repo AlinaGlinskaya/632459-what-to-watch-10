@@ -1,6 +1,6 @@
 import MainLogo from '../../components/main-logo/main-logo';
 import {Link} from 'react-router-dom';
-import { AppRoute } from '../../const';
+import {AppRoute} from '../../const';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 
 function NotFoundScreen(): JSX.Element {

@@ -1,3 +1,5 @@
+import {AuthorizationStatus} from '../const';
+
 export type FilmCardProps = {
   title: string,
   img: string,
@@ -19,4 +21,9 @@ export type FilmsMainProps = {
   title: string,
   img: string,
 }[];
+
+export type PrivateRouteProps = {
+  authorizationStatus: AuthorizationStatus,
+  children: JSX.Element
+}
 
