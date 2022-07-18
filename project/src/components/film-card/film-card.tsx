@@ -9,7 +9,7 @@ function FilmCard({img, title}: FilmCardProps) {
         <img src={img} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <Link to={AppRoute.Film} className="small-film-card__link">{title}</Link>
+        <Link to={`${AppRoute.Films}/:id`} className="small-film-card__link">{title}</Link>
       </h3>
     </article>
   );
