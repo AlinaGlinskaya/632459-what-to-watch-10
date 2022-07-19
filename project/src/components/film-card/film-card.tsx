@@ -2,9 +2,9 @@ import {FilmCardProps} from '../../types/types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
-function FilmCard({img, title}: FilmCardProps) {
+function FilmCard({img, title, onMouseOver}: FilmCardProps) {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card" onMouseOver={onMouseOver}>
       <div className="small-film-card__image">
         <img src={img} alt={title} width="280" height="175" />
       </div>

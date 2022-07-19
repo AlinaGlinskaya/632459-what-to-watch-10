@@ -1,5 +1,5 @@
 import React from 'react';
-import FilmsMain from '../../components/films-main/films-main';
+import FilmsList from '../../components/films-list/films-list';
 import {AppScreenProps} from '../../types/types';
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
@@ -94,7 +94,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
             </li>
           </ul>
 
-          <FilmsMain films={films} promoFilm={promoFilm}></FilmsMain>
+          <FilmsList films={films} promoFilm={promoFilm}></FilmsList>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
