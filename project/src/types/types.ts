@@ -1,6 +1,7 @@
 import {AuthorizationStatus} from '../const';
 
 export type FilmCardProps = {
+  id: number,
   title: string,
   img: string,
   onMouseOver: () => void,

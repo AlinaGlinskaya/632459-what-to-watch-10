@@ -3,8 +3,18 @@ import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import {useParams} from 'react-router-dom';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+import {films} from '../../mocks/films';
 
 function MoviePageScreen(): JSX.Element {
+  const params = useParams().id;
+  const filmId = Number(params?.split('=')[1]);
+  const film = films.find((item) => item.id === filmId);
+  if (!film) {
+    return <NotFoundScreen></NotFoundScreen>;
+  }
+
   return(
     <React.Fragment>
       <section className="film-card film-card--full">

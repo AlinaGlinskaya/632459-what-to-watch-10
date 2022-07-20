@@ -6,7 +6,7 @@ import {AppScreenProps} from '../../types/types';
 
 function MyListScreen({films}: AppScreenProps): JSX.Element {
   const [activeFilmId, setActiveFilmId] = useState<number|undefined>();
-  const items = films.map((item) => <FilmCard isActive={activeFilmId === item.id} onMouseOver={() => setActiveFilmId(item.id)} title={item.title} img={item.img} key={item.id}></FilmCard>);
+  const items = films.map((item) => <FilmCard id={item.id} isActive={activeFilmId === item.id} onMouseOver={() => setActiveFilmId(item.id)} title={item.title} img={item.img} key={item.id}></FilmCard>);
   return(
     <div className="user-page">
       <header className="page-header user-page__head">
