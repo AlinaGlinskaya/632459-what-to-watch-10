@@ -3,7 +3,8 @@ import {AuthorizationStatus} from '../const';
 export type FilmCardProps = {
   title: string,
   img: string,
-  onMouseOver: () => void
+  onMouseOver: () => void,
+  isActive: boolean
 }
 
 export type AppScreenProps = {
@@ -28,4 +29,11 @@ export type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus,
   children: JSX.Element
 }
+
+export type FilmListProps = {
+  id: number,
+  title: string,
+  img: string,
+  video: string
+}[];
 

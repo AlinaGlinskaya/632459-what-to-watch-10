@@ -23,7 +23,7 @@ function App({promoFilm, films}: AppScreenProps): JSX.Element {
         </Route>
         <Route
           path={AppRoute.MyList}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><MyListScreen /></PrivateRoute>}
+          element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen promoFilm={promoFilm} films={films} /></PrivateRoute>}
         />
         <Route path={AppRoute.Player}>
           <Route path=":id" element={<PlayerScreen />} />
