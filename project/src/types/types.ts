@@ -10,6 +10,7 @@ export type FilmCardProps = {
 
 export type AppScreenProps = {
   promoFilm: {
+    id: number,
     img: string,
     alt: string,
     title: string,

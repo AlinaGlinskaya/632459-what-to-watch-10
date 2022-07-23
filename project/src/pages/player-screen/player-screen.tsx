@@ -1,9 +1,22 @@
-function PlayerScreen(): JSX.Element {
+import {FilmsMainProps} from '../../types/types';
+import {useParams} from 'react-router-dom';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+import {useNavigate} from 'react-router-dom';
+
+function PlayerScreen({films}: FilmsMainProps): JSX.Element {
+  const navigate = useNavigate();
+  const params = useParams().id;
+  const filmId = Number(params?.split('=')[1]);
+  const film = films.find((item) => item.id === filmId);
+  if (!film) {
+    return <NotFoundScreen></NotFoundScreen>;
+  }
+
   return(
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src="#" className="player__video" poster={film.posterImage}></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -21,7 +34,7 @@ function PlayerScreen(): JSX.Element {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{film.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

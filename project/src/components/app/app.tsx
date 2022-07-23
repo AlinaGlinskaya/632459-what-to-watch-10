@@ -9,24 +9,26 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
 import {AppScreenProps} from '../../types/types';
 import PrivateRoute from '../private-route/private-route';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
 
 function App({promoFilm, films}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm} films={films}/>}
         />
         <Route path={AppRoute.Films}>
           <Route path=":id" element={<MoviePageScreen films={films} />} />
-          <Route path=":id/review" element={<AddReviewScreen />} />
+          <Route path=":id/review" element={<AddReviewScreen films={films} />} />
         </Route>
         <Route
           path={AppRoute.MyList}
           element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen films={films} /></PrivateRoute>}
         />
         <Route path={AppRoute.Player}>
-          <Route path=":id" element={<PlayerScreen />} />
+          <Route path=":id" element={<PlayerScreen films={films} />} />
         </Route>
         <Route
           path={AppRoute.SignIn} element={<SignInScreen />}

@@ -1,13 +1,22 @@
 import MainLogo from '../../components/main-logo/main-logo';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import {FilmsMainProps} from '../../types/types';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+import {useParams} from 'react-router-dom';
 
-function AddReviewScreen(): JSX.Element {
+function AddReviewScreen({films}: FilmsMainProps): JSX.Element {
+  const params = useParams().id;
+  const filmId = Number(params?.split('=')[1]);
+  const film = films.find((item) => item.id === filmId);
+  if (!film) {
+    return <NotFoundScreen></NotFoundScreen>;
+  }
   return(
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -18,7 +27,7 @@ function AddReviewScreen(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.Films}/:id`} className="breadcrumbs__link">The Grand Budapest Hotel</Link>
+                <Link to={`${AppRoute.Films}/:id=${film.id}`} className="breadcrumbs__link">The Grand Budapest Hotel</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a href="/#" className="breadcrumbs__link">Add review</a>
@@ -32,7 +41,7 @@ function AddReviewScreen(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
         </div>
       </div>
 
