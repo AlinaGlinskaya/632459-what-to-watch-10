@@ -4,7 +4,7 @@ import {useState} from 'react';
 
 function FilmsList({films}: FilmsMainProps) {
   const [activeFilmId, setActiveFilmId] = useState<number|undefined>();
-  const items = films.map((item) => <FilmCard id={item.id} isActive={activeFilmId === item.id} onMouseOver={() => setActiveFilmId(item.id)} title={item.title} img={item.img} key={item.id}></FilmCard>);
+  const items = films.map((item) => <FilmCard id={item.id} isActive={activeFilmId === item.id} onMouseOver={() => setActiveFilmId(item.id)} title={item.name} img={item.previewImage} key={item.id}></FilmCard>);
   return (
     <div className="catalog__films-list">
       {items}
