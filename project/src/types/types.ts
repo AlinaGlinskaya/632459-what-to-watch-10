@@ -16,25 +16,23 @@ export type AppScreenProps = {
     genre: string,
     year: number
   };
-  films: FilmsMainProps
+  films: FilmMain[]
 }
 
-export type FilmsMainProps = {
+
+export type FilmMain = {
   id: number,
   title: string,
   img: string,
   video: string
-}[];
+};
+
+export type FilmsMainProps = {
+  films: FilmMain[]
+}
 
 export type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus,
   children: JSX.Element
 }
-
-export type FilmListProps = {
-  id: number,
-  title: string,
-  img: string,
-  video: string
-}[];
 

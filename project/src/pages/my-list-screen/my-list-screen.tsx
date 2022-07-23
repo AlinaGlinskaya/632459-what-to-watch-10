@@ -2,9 +2,9 @@ import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import FilmCard from '../../components/film-card/film-card';
 import {useState} from 'react';
-import {AppScreenProps} from '../../types/types';
+import {FilmsMainProps} from '../../types/types';
 
-function MyListScreen({films}: AppScreenProps): JSX.Element {
+function MyListScreen({films}: FilmsMainProps): JSX.Element {
   const [activeFilmId, setActiveFilmId] = useState<number|undefined>();
   const items = films.map((item) => <FilmCard id={item.id} isActive={activeFilmId === item.id} onMouseOver={() => setActiveFilmId(item.id)} title={item.title} img={item.img} key={item.id}></FilmCard>);
   return(

@@ -1,6 +1,6 @@
-import {FilmsMainProps} from '../types/types';
+import {FilmMain} from '../types/types';
 
-export const films: FilmsMainProps = [
+export const films: FilmMain[] = [
   {
     id: 0,
     title: 'Fantastic Beasts: The Crimes of Grindelwald',
