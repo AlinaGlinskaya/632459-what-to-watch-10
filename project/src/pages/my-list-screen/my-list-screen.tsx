@@ -5,8 +5,17 @@ import {useState} from 'react';
 import {FilmsMainProps} from '../../types/types';
 
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
-  const [activeFilmId, setActiveFilmId] = useState<number|undefined>();
-  const items = films.map((item) => <FilmCard id={item.id} isActive={activeFilmId === item.id} onMouseOver={() => setActiveFilmId(item.id)} title={item.name} img={item.previewImage} key={item.id}></FilmCard>);
+  const [activeFilmId, setActiveFilmId] = useState<number|null>();
+  const items = films.map((item) => (
+    <FilmCard
+      id={item.id}
+      isActive={activeFilmId === item.id}
+      onMouseEnter={() => setActiveFilmId(item.id)}
+      onMouseLeave={() => setActiveFilmId(null)}
+      title={item.name}
+      img={item.previewImage}
+      key={item.id}
+    />));
   return(
     <div className="user-page">
       <header className="page-header user-page__head">
