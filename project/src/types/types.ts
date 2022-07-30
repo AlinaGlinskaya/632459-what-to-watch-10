@@ -4,9 +4,6 @@ export type FilmCardProps = {
   id: number,
   title: string,
   img: string,
-  onMouseEnter: () => void,
-  onMouseLeave: () => void,
-  isActive: boolean,
   previewVideoLink: string,
   posterImage: string
 }

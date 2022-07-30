@@ -1,17 +1,12 @@
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import FilmCard from '../../components/film-card/film-card';
-import {useState} from 'react';
 import {FilmsMainProps} from '../../types/types';
 
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
-  const [activeFilmId, setActiveFilmId] = useState<number | null>();
   const items = films.map((item) => (
     <FilmCard
       id={item.id}
-      isActive={activeFilmId === item.id}
-      onMouseEnter={() => setActiveFilmId(item.id)}
-      onMouseLeave={() => setActiveFilmId(null)}
       title={item.name}
       img={item.previewImage}
       key={item.id}
