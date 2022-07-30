@@ -6,7 +6,9 @@ export type FilmCardProps = {
   img: string,
   onMouseEnter: () => void,
   onMouseLeave: () => void,
-  isActive: boolean
+  isActive: boolean,
+  previewVideoLink: string,
+  posterImage: string
 }
 
 export type AppScreenProps = {
@@ -48,5 +50,10 @@ export type FilmsMainProps = {
 export type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus,
   children: JSX.Element
+}
+
+export type VideoPlayerProps = {
+  src: string,
+  posterImage: string
 }
 

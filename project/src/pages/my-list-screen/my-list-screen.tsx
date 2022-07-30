@@ -5,7 +5,7 @@ import {useState} from 'react';
 import {FilmsMainProps} from '../../types/types';
 
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
-  const [activeFilmId, setActiveFilmId] = useState<number|null>();
+  const [activeFilmId, setActiveFilmId] = useState<number | null>();
   const items = films.map((item) => (
     <FilmCard
       id={item.id}
@@ -15,6 +15,8 @@ function MyListScreen({films}: FilmsMainProps): JSX.Element {
       title={item.name}
       img={item.previewImage}
       key={item.id}
+      previewVideoLink={item.previewVideoLink}
+      posterImage={item.posterImage}
     />));
   return(
     <div className="user-page">
