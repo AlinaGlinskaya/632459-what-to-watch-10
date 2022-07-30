@@ -1,10 +1,9 @@
 import {VideoPlayerProps} from '../../types/types';
-import {useRef, useEffect, useState} from 'react';
+import {useRef, useEffect} from 'react';
 
-function VideoPlayer({src, posterImage}: VideoPlayerProps): JSX.Element {
+
+function VideoPlayer({src, posterImage, isPlaying}: VideoPlayerProps): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  let timeout: NodeJS.Timeout | undefined = undefined;
 
   useEffect(() => {
     if (videoRef.current === null) {
@@ -16,8 +15,6 @@ function VideoPlayer({src, posterImage}: VideoPlayerProps): JSX.Element {
       return;
     }
 
-    videoRef.current.pause();
-    videoRef.current.currentTime = 0;
     videoRef.current.load();
 
   }, [isPlaying]);
@@ -25,16 +22,6 @@ function VideoPlayer({src, posterImage}: VideoPlayerProps): JSX.Element {
   return (
     <video
       ref={videoRef}
-      onMouseEnter={() =>
-      {
-        timeout = setTimeout(() => setIsPlaying(true), 1000);
-      }}
-      onMouseLeave={() => {
-        if (!isPlaying) {
-          clearTimeout(timeout);
-        }
-        setIsPlaying(false);
-      }}
       src={src}
       poster={posterImage}
       muted
