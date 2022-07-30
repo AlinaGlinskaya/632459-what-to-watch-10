@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import VideoPlayer from '../video-player/video-player';
 
-function FilmCard({id, title, previewVideoLink, posterImage, onMouseEnter, onMouseLeave}: FilmCardProps) {
+function FilmCard({id, title, previewVideoLink, posterImage}: FilmCardProps) {
   return (
-    <article className="small-film-card catalog__films-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <article className="small-film-card catalog__films-card">
       <VideoPlayer
         src={previewVideoLink}
         posterImage={posterImage}
