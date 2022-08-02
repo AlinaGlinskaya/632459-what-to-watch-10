@@ -1,4 +1,6 @@
-function Reviews(): JSX.Element {
+import {TabsProps} from '../../types/types';
+
+function Reviews({film}: TabsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">

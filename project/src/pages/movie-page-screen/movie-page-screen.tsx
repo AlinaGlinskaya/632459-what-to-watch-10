@@ -9,6 +9,7 @@ import {FilmsMainProps } from '../../types/types';
 import FilmsList from '../../components/films-list/films-list';
 import {filmsMore} from '../../mocks/films-more';
 import {useNavigate} from 'react-router-dom';
+import FilmTabs from '../../components/tabs/tabs';
 
 function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
               <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
             </div>
 
-            {/* tabs */}
+            <FilmTabs film={film}/>
 
           </div>
         </div>

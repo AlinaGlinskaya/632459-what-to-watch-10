@@ -55,3 +55,7 @@ export type VideoPlayerProps = {
   isPlaying: boolean
 }
 
+export type TabsProps = {
+  film: FilmMain
+}
+

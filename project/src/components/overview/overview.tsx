@@ -1,7 +1,7 @@
 import React from 'react';
-import {FilmMain} from '../../types/types';
+import {TabsProps} from '../../types/types';
 
-function Overview(film: FilmMain): JSX.Element {
+function Overview({film}: TabsProps): JSX.Element {
   const actors = film.starring.map((item) => item).join(', ');
   return (
     <React.Fragment>
