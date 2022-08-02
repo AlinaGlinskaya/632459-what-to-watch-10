@@ -2,7 +2,16 @@ import React from 'react';
 import {TabsProps} from '../../types/types';
 
 function Overview({film}: TabsProps): JSX.Element {
-  const actors = film.starring.map((item) => item).join(', ');
+
+  const getFilmActors = () => {
+    if (film.starring.length < 5) {
+      return film.starring.map((item) => item).join(', ');
+    }
+    const actors = film.starring.slice(0, 4)
+      .map((item) => item).join(', ');
+    return `${actors} and others`;
+  };
+
   return (
     <React.Fragment>
       <div className="film-rating">
@@ -18,7 +27,7 @@ function Overview({film}: TabsProps): JSX.Element {
 
         <p className="film-card__director"><strong>Director: {film.director}</strong></p>
 
-        <p className="film-card__starring"><strong>Starring: {actors}</strong></p>
+        <p className="film-card__starring"><strong>Starring: {getFilmActors()}</strong></p>
       </div>
     </React.Fragment>
   );
