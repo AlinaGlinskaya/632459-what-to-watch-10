@@ -3,11 +3,13 @@ import {TabsProps} from '../../types/types';
 
 function Overview({film}: TabsProps): JSX.Element {
 
+  const ACTORS_MAX_LENGTH = 4;
+
   const getFilmActors = () => {
-    if (film.starring.length < 5) {
+    if (film.starring.length <= ACTORS_MAX_LENGTH) {
       return film.starring.map((item) => item).join(', ');
     }
-    const actors = film.starring.slice(0, 4)
+    const actors = film.starring.slice(0, ACTORS_MAX_LENGTH)
       .map((item) => item).join(', ');
     return `${actors} and others`;
   };

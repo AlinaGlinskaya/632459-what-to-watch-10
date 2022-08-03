@@ -1,4 +1,5 @@
 import {TabsProps} from '../../types/types';
+import {getTimeFromMins} from '../../utils';
 
 function Details({film}: TabsProps): JSX.Element {
   const actors = film.starring.map((item) => item).join(', ');
@@ -21,7 +22,7 @@ function Details({film}: TabsProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{film.runTime}</span>
+          <span className="film-card__details-value">{getTimeFromMins(film.runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

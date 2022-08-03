@@ -59,3 +59,18 @@ export type TabsProps = {
   film: FilmMain
 }
 
+export type CommentProps = {
+  comment: string
+  date: string
+  id: number
+  rating: number
+  user: {
+    id: number
+    name: string
+  }
+}
+
+export type FilmCommentsProps = {
+  comments: CommentProps[]
+}
+
