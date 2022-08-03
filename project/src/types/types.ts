@@ -74,3 +74,8 @@ export type FilmCommentsProps = {
   comments: CommentProps[]
 }
 
+export type SimilarFilmsProps = {
+  films: FilmMain[],
+  film: FilmMain
+}
+

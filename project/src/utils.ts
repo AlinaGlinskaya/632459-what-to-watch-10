@@ -12,10 +12,7 @@ export const getDatetimeFormat = (date: string) => dayjs(date).format('YYYY-MM-D
 export const getDateCommentFormat = (date: string) => dayjs(date).format('MMMM DD, YYYY');
 
 export const getRatingFormat = (rating: number) => {
-  const rate = rating.toString();
-  if (rate.length === 1) {
-    return `${rate},0`;
-  }
+  const rate = rating.toFixed(1);
   return rate.replace('.', ',');
 };
 

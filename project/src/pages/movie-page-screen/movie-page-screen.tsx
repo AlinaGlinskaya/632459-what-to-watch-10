@@ -6,10 +6,9 @@ import {AppRoute} from '../../const';
 import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {FilmsMainProps } from '../../types/types';
-import FilmsList from '../../components/films-list/films-list';
-import {filmsMore} from '../../mocks/films-more';
 import {useNavigate} from 'react-router-dom';
 import FilmTabs from '../../components/tabs/tabs';
+import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
 
 function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
   const navigate = useNavigate();
@@ -82,7 +81,7 @@ function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList films={filmsMore}></FilmsList>
+          <SimilarFilmsList films={films} film={film}></SimilarFilmsList>
         </section>
 
         <footer className="page-footer">

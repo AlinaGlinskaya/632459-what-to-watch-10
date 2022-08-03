@@ -35,7 +35,7 @@ export const films: FilmMain[] = [
     director: 'Martin Scorsese',
     starring: ['Tom Ford', 'Al Pacino'],
     runTime: 100,
-    genre: 'Drama',
+    genre: 'Comedy',
     released: 2020,
     isFavorite: true
   },
@@ -73,7 +73,7 @@ export const films: FilmMain[] = [
     director: 'Martin Scorsese',
     starring: ['Tom Ford', 'Al Pacino'],
     runTime: 100,
-    genre: 'Drama',
+    genre: 'Comedy',
     released: 2020,
     isFavorite: true
   },
@@ -111,7 +111,7 @@ export const films: FilmMain[] = [
     director: 'Martin Scorsese',
     starring: ['Tom Ford', 'Al Pacino'],
     runTime: 100,
-    genre: 'Drama',
+    genre: 'Detective',
     released: 2020,
     isFavorite: true
   },
@@ -149,7 +149,7 @@ export const films: FilmMain[] = [
     director: 'Martin Scorsese',
     starring: ['Tom Ford', 'Al Pacino', 'Edward Norton', 'Saoirse Ronan', 'Tom Wilkinson', 'Adrien Brody'],
     runTime: 100,
-    genre: 'Drama',
+    genre: 'Thriller',
     released: 2020,
     isFavorite: true
   }
