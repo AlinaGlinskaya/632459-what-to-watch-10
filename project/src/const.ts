@@ -18,3 +18,16 @@ export enum TabName {
   Details = 'details',
   Reviews = 'reviews'
 }
+
+export enum Filters {
+  All = 'all genres',
+  Comedies = 'comedies',
+  Crime = 'crime',
+  Documentary = 'documentary',
+  Dramas = 'dramas',
+  Horror = 'horror',
+  Family = 'family',
+  Romance = 'romance',
+  SciFi = 'sci-fi',
+  Thrillers = 'thrillers'
+}

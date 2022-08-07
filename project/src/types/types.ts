@@ -1,4 +1,5 @@
 import {AuthorizationStatus} from '../const';
+import {store} from '../store/index.js';
 
 export type FilmCardProps = {
   film: FilmMain
@@ -75,3 +76,6 @@ export type SimilarFilmsProps = {
   film: FilmMain
 }
 
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
