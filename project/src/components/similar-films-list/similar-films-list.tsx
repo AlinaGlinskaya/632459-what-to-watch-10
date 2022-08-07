@@ -21,12 +21,8 @@ function SimilarFilmsList({films, film}: SimilarFilmsProps) {
 
   const items = filmsList.map((item) => (
     <FilmCard
-      id={item.id}
-      title={item.name}
-      img={item.previewImage}
+      film={item}
       key={item.id}
-      previewVideoLink={item.previewVideoLink}
-      posterImage={item.posterImage}
     />));
   return (
     <div className="catalog__films-list">

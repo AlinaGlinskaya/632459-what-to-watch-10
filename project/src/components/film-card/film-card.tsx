@@ -4,7 +4,7 @@ import {AppRoute} from '../../const';
 import VideoPlayer from '../video-player/video-player';
 import {useState} from 'react';
 
-function FilmCard({id, title, previewVideoLink, posterImage}: FilmCardProps) {
+function FilmCard({film}: FilmCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   let timeout: NodeJS.Timeout | undefined = undefined;
 
@@ -21,11 +21,11 @@ function FilmCard({id, title, previewVideoLink, posterImage}: FilmCardProps) {
     >
       <VideoPlayer
         isPlaying = {isPlaying}
-        src={previewVideoLink}
-        posterImage={posterImage}
+        src={film.previewVideoLink}
+        posterImage={film.posterImage}
       />
       <h3 className="small-film-card__title">
-        <Link to={`${AppRoute.Films}/:id=${id}`} className="small-film-card__link">{title}</Link>
+        <Link to={`${AppRoute.Films}/:id=${film.id}`} className="small-film-card__link">{film.name}</Link>
       </h3>
     </article>
   );

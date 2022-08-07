@@ -1,11 +1,7 @@
 import {AuthorizationStatus} from '../const';
 
 export type FilmCardProps = {
-  id: number,
-  title: string,
-  img: string,
-  previewVideoLink: string,
-  posterImage: string
+  film: FilmMain
 }
 
 export type AppScreenProps = {

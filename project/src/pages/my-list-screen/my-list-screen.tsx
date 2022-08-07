@@ -6,12 +6,8 @@ import {FilmsMainProps} from '../../types/types';
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
   const items = films.map((item) => (
     <FilmCard
-      id={item.id}
-      title={item.name}
-      img={item.previewImage}
+      film={item}
       key={item.id}
-      previewVideoLink={item.previewVideoLink}
-      posterImage={item.posterImage}
     />));
   return(
     <div className="user-page">
