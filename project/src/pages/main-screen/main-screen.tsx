@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import {AppScreenProps} from '../../types/types';
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getFilms, changeFilter, resetFilters} from '../../store/action';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const activeFilter = useAppSelector((state) => state.activeFilter);
+
+  const handleLinkClick = (evt: MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    if (evt.currentTarget !== null) {
+      dispatch(changeFilter(evt.currentTarget.id));
+    }
+  };
   return (
     <React.Fragment>
       <section className="film-card">
@@ -68,7 +80,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
               <a href="/#" className="catalog__genres-link">All genres</a>
             </li>
             <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Comedies</a>
+              <a href="/#" onClick={handleLinkClick} id="comedies" className="catalog__genres-link">Comedies</a>
             </li>
             <li className="catalog__genres-item">
               <a href="/#" className="catalog__genres-link">Crime</a>

@@ -1,6 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {changeFilter, resetFilters, getFilms} from './action';
-import {Filters} from '../const';
 import { films } from '../mocks/films';
 
 const initialState = {
