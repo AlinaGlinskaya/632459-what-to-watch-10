@@ -1,7 +1,7 @@
 import {CommentProps} from '../../types/types';
 import {getDateCommentFormat, getDatetimeFormat, getRatingFormat} from '../../utils';
 
-function Comment(comment: CommentProps): JSX.Element {
+function Comment({comment}: CommentProps): JSX.Element {
   return (
     <div className="review">
       <blockquote className="review__quote">

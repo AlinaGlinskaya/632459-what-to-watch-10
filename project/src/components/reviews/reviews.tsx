@@ -8,28 +8,14 @@ function Reviews({film}: TabsProps): JSX.Element {
 
   const commentsLeftItems = commentsLeft.map((item) => (
     <Comment
+      comment={item}
       key={item.id}
-      comment={item.comment}
-      date={item.date}
-      id={item.id}
-      rating={item.rating}
-      user={{
-        id: 0,
-        name: item.user.name
-      }}
     />));
 
   const commentsRightItems = commentsRight.map((item) => (
     <Comment
+      comment={item}
       key={item.id}
-      comment={item.comment}
-      date={item.date}
-      id={item.id}
-      rating={item.rating}
-      user={{
-        id: 0,
-        name: item.user.name
-      }}
     />));
 
   return (

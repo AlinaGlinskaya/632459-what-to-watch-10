@@ -1,6 +1,6 @@
-import { CommentProps } from '../types/types';
+import {Comment } from '../types/types';
 
-export const comments: CommentProps[] = [
+export const comments: Comment[] = [
   {
     comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed movies in years.',
     date: 'Wed Aug 03 2022 13:12:37 GMT+0300 (Москва, стандартное время)',
