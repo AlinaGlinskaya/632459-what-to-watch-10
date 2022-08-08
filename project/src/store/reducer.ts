@@ -3,7 +3,7 @@ import {changeFilter, resetFilters, getFilms} from './action';
 import { films } from '../mocks/films';
 
 const initialState = {
-  activeFilter: 'all',
+  activeFilter: 'All genres',
   films: films
 };
 

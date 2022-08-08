@@ -1,26 +1,17 @@
-import React, {MouseEvent} from 'react';
+import React from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import {AppScreenProps} from '../../types/types';
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {getFilms, changeFilter, resetFilters} from '../../store/action';
+//import {getFilms, changeFilter, resetFilters} from '../../store/action';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
+import Filters from '../../components/filters/filters';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const activeFilter = useAppSelector((state) => state.activeFilter);
-
-  const handleLinkClick = (evt: MouseEvent<HTMLAnchorElement>) => {
-    evt.preventDefault();
-    if (evt.currentTarget !== null) {
-      dispatch(changeFilter(evt.currentTarget.id));
-    }
-  };
   return (
     <React.Fragment>
       <section className="film-card">
@@ -75,38 +66,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="/#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" onClick={handleLinkClick} id="comedies" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Kids &amp; Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <Filters films={films}></Filters>
 
           <FilmsList films={films}></FilmsList>
 

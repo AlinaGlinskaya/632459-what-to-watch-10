@@ -19,15 +19,15 @@ export enum TabName {
   Reviews = 'reviews'
 }
 
-export enum Filters {
-  All = 'all genres',
-  Comedies = 'comedies',
-  Crime = 'crime',
-  Documentary = 'documentary',
-  Dramas = 'dramas',
-  Horror = 'horror',
-  Family = 'family',
-  Romance = 'romance',
-  SciFi = 'sci-fi',
-  Thrillers = 'thrillers'
-}
+export const FiltersList = {
+  'All': 'All genres',
+  'Comedy': 'Comedies',
+  'Crime': 'Crime',
+  'Documentary': 'Documentary',
+  'Drama': 'Dramas',
+  'Horror': 'Horror',
+  'KidsAndFamily': 'Kids & Family',
+  'Romance': 'Romance',
+  'SciFi': 'Sci-Fi',
+  'Thriller': 'Thrillers'
+};
