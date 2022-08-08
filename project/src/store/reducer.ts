@@ -1,9 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeFilter, resetFilters, getFilms} from './action';
+import {changeFilter, getFilms} from './action';
 import { films } from '../mocks/films';
 
 const initialState = {
-  activeFilter: 'All genres',
+  activeFilter: 'All',
   films: films
 };
 
@@ -14,9 +14,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getFilms, (state) => {
       state.films = films;
-    })
-    .addCase(resetFilters, (state) => {
-      state.activeFilter = 'all';
     });
 });
 

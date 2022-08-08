@@ -1,3 +1,5 @@
+import {Genre} from './types/types';
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -19,7 +21,7 @@ export enum TabName {
   Reviews = 'reviews'
 }
 
-export const FiltersList = {
+export const FiltersList: Record<Genre | 'All', string> = {
   'All': 'All genres',
   'Comedy': 'Comedies',
   'Crime': 'Crime',
@@ -29,5 +31,6 @@ export const FiltersList = {
   'KidsAndFamily': 'Kids & Family',
   'Romance': 'Romance',
   'SciFi': 'Sci-Fi',
-  'Thriller': 'Thrillers'
+  'Thriller': 'Thrillers',
+  'Detective': 'Detective'
 };

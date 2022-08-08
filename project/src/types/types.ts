@@ -32,7 +32,7 @@ export type FilmMain = {
   director: string
   starring: string[]
   runTime: number
-  genre: string
+  genre: Genre
   released: number
   isFavorite: boolean
 };
@@ -75,6 +75,8 @@ export type SimilarFilmsProps = {
   films: FilmMain[],
   film: FilmMain
 }
+
+export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective';
 
 export type State = ReturnType<typeof store.getState>;
 

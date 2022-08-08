@@ -3,14 +3,17 @@ import FilmsList from '../../components/films-list/films-list';
 import {AppScreenProps} from '../../types/types';
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
-//import {getFilms, changeFilter, resetFilters} from '../../store/action';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import Filters from '../../components/filters/filters';
+import {useAppSelector} from '../../hooks';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   const navigate = useNavigate();
+  const activeFilter = useAppSelector((state) => state.activeFilter);
+
+  const filteredFilms = films.filter((film) => activeFilter === 'All' ? true : film.genre === activeFilter);
 
   return (
     <React.Fragment>
@@ -68,7 +71,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
 
           <Filters films={films}></Filters>
 
-          <FilmsList films={films}></FilmsList>
+          <FilmsList films={filteredFilms}></FilmsList>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
