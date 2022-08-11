@@ -10,8 +10,11 @@ import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
 import {AppScreenProps} from '../../types/types';
 import PrivateRoute from '../private-route/private-route';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
+import {useAppSelector} from '../../hooks';
 
-function App({promoFilm, films}: AppScreenProps): JSX.Element {
+function App({promoFilm}: AppScreenProps): JSX.Element {
+
+  const films = useAppSelector((state) => state.films);
   return (
     <BrowserRouter>
       <ScrollToTop />

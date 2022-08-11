@@ -34,3 +34,5 @@ export const FiltersList: Record<Genre | 'All', string> = {
   'Thriller': 'Thrillers',
   'Detective': 'Detective'
 };
+
+export const FILTER_DEFAULT = 'All';
