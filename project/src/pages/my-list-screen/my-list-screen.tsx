@@ -1,14 +1,10 @@
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
-import FilmCard from '../../components/film-card/film-card';
 import {FilmsMainProps} from '../../types/types';
+import MyList from '../../components/my-list/my-list';
 
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
-  const items = films.map((item) => (
-    <FilmCard
-      film={item}
-      key={item.id}
-    />));
+
   return(
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -30,9 +26,7 @@ function MyListScreen({films}: FilmsMainProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          {items}
-        </div>
+        <MyList films={films} ></MyList>
       </section>
 
       <footer className="page-footer">

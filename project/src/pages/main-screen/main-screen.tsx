@@ -9,6 +9,10 @@ import {useNavigate} from 'react-router-dom';
 import Filters from '../../components/filters/filters';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
+  const MAX_RENDERED_FILMS_COUNT = 8;
+
+  const filmsToRender = films.slice(0, MAX_RENDERED_FILMS_COUNT);
+
   const navigate = useNavigate();
 
   return (
@@ -67,7 +71,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
 
           <Filters></Filters>
 
-          <FilmsList films={films}></FilmsList>
+          <FilmsList films={filmsToRender}></FilmsList>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
