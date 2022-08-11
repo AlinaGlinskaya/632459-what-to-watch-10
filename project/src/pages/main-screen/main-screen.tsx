@@ -7,6 +7,7 @@ import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import Filters from '../../components/filters/filters';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   const MAX_RENDERED_FILMS_COUNT = 8;
@@ -73,9 +74,8 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
 
           <FilmsList films={filmsToRender}></FilmsList>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMoreButton films={filmsToRender} count={MAX_RENDERED_FILMS_COUNT}></ShowMoreButton>
+
         </section>
 
         <footer className="page-footer">

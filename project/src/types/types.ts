@@ -41,6 +41,11 @@ export type FilmsMainProps = {
   films: FilmMain[]
 }
 
+export type ShowMoreButtonProps = {
+  films: FilmMain[],
+  count: number
+}
+
 export type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus,
   children: JSX.Element

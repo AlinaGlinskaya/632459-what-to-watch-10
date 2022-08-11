@@ -1,0 +1,14 @@
+import {ShowMoreButtonProps} from '../../types/types';
+
+function ShowMoreButton({films, count}: ShowMoreButtonProps): JSX.Element | null {
+  if (films.length < count) {
+    return null;
+  }
+  return (
+    <div className="catalog__more">
+      <button className="catalog__button" type="button">Show more</button>
+    </div>
+  );
+}
+
+export default ShowMoreButton;
