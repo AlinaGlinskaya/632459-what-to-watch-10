@@ -8,11 +8,12 @@ import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import Filters from '../../components/filters/filters';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
+import { useAppSelector } from '../../hooks';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
-  const MAX_RENDERED_FILMS_COUNT = 8;
+  const renderedFilmsCount = useAppSelector((state) => state.renderedFilmsCount);
 
-  const filmsToRender = films.slice(0, MAX_RENDERED_FILMS_COUNT);
+  const filmsToRender = films.slice(0, renderedFilmsCount);
 
   const navigate = useNavigate();
 
@@ -74,7 +75,7 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
 
           <FilmsList films={filmsToRender}></FilmsList>
 
-          <ShowMoreButton films={filmsToRender} count={MAX_RENDERED_FILMS_COUNT}></ShowMoreButton>
+          <ShowMoreButton films={filmsToRender} count={renderedFilmsCount}></ShowMoreButton>
 
         </section>
 
