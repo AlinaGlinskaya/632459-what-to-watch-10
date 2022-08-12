@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeFilter, getFilms, renderMoreFilms} from './action';
+import {changeFilter, getFilms, renderMoreFilms, resetFilters} from './action';
 import {films} from '../mocks/films';
 import {FILTER_DEFAULT} from '../const';
 import { FiltersList } from '../const';
@@ -25,6 +25,11 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(renderMoreFilms, (state) => {
       state.renderedFilmsCount += FILMS_PER_STEP;
+    })
+    .addCase(resetFilters, (state) => {
+      state.activeFilter = FILTER_DEFAULT;
+      state.films = films.filter((film) => state.activeFilter === FILTER_DEFAULT ? true : film.genre === state.activeFilter);
+      state.renderedFilmsCount = FILMS_PER_STEP;
     })
     .addCase(getFilms, (state) => {
       state.films = films;

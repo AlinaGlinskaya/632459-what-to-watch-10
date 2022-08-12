@@ -8,7 +8,10 @@ import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import Filters from '../../components/filters/filters';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
-import { useAppSelector } from '../../hooks';
+import {useAppSelector } from '../../hooks';
+import {useEffect} from 'react';
+import {resetFilters} from '../../store/action';
+import {useAppDispatch} from '../../hooks';
 
 function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   const renderedFilmsCount = useAppSelector((state) => state.renderedFilmsCount);
@@ -16,6 +19,11 @@ function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
   const filmsToRender = films.slice(0, renderedFilmsCount);
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
 
   return (
     <React.Fragment>
