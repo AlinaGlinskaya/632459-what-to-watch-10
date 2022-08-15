@@ -83,6 +83,12 @@ export type SimilarFilmsProps = {
 
 export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective';
 
+export type InitialState = {
+  activeFilter: string,
+  films: FilmMain[],
+  renderedFilmsCount: number
+}
+
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;

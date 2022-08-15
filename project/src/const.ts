@@ -36,3 +36,8 @@ export const FiltersList: Record<Genre | 'All', string> = {
 };
 
 export const FILTER_DEFAULT = 'All';
+
+export enum APIRoute {
+  Films = '/films',
+  Promo = '/promo'
+}

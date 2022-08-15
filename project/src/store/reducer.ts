@@ -1,20 +1,22 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeFilter, getFilms, renderMoreFilms, resetFilters} from './action';
-import {films} from '../mocks/films';
+import {changeFilter, loadFilms, renderMoreFilms, resetFilters} from './action';
 import {FILTER_DEFAULT} from '../const';
-import { FiltersList } from '../const';
+import {FiltersList} from '../const';
+import {InitialState} from '../types/types';
 
 export const FILMS_PER_STEP = 8;
+
+const initialState: InitialState = {
+  activeFilter: FILTER_DEFAULT,
+  films: [],
+  renderedFilmsCount: FILMS_PER_STEP
+};
+
+const films = initialState.films;
 
 const genres: (keyof typeof FiltersList)[] = [FILTER_DEFAULT];
 films.map((item) => genres.push(item.genre));
 export const filters = [...new Set(genres)];
-
-const initialState = {
-  activeFilter: FILTER_DEFAULT,
-  films: films,
-  renderedFilmsCount: FILMS_PER_STEP
-};
 
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -31,8 +33,8 @@ const reducer = createReducer(initialState, (builder) => {
       state.films = films.filter((film) => state.activeFilter === FILTER_DEFAULT ? true : film.genre === state.activeFilter);
       state.renderedFilmsCount = FILMS_PER_STEP;
     })
-    .addCase(getFilms, (state) => {
-      state.films = films;
+    .addCase(loadFilms, (state, action) => {
+      state.films = action.payload;
     });
 });
 
