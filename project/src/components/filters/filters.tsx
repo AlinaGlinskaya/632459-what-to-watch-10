@@ -5,8 +5,7 @@ import {FiltersList} from '../../const';
 
 function Filters() {
   const dispatch = useAppDispatch();
-  const activeFilter = useAppSelector((state) => state.activeFilter);
-  const filters = useAppSelector((state) => state.filters);
+  const {activeFilter, filters} = useAppSelector((state) => state);
 
   const handleLinkClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();

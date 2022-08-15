@@ -70,13 +70,14 @@ export type SimilarFilmsProps = {
 }
 
 export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective'
-| 'Adventure' | 'Action' | 'Fantasy' | 'Undefined';
+| 'Adventure' | 'Action' | 'Fantasy';
 
 export type InitialState = {
   activeFilter: string,
   films: FilmMain[],
   renderedFilmsCount: number,
   filteredFilms: FilmMain[],
+  isDataLoaded: boolean,
   error: string | null,
   filters: (Genre | 'All')[],
   promoFilm: FilmMain | null

@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeFilter, loadFilms, loadPromoFilm, renderMoreFilms, resetFilters, setError} from './action';
+import {changeFilter, loadFilms, loadPromoFilm, renderMoreFilms, resetFilters, setError, setDataLoadedStatus} from './action';
 import {FILTER_DEFAULT} from '../const';
 import {FiltersList} from '../const';
 import {FilmMain, InitialState} from '../types/types';
@@ -10,6 +10,7 @@ const initialState: InitialState = {
   activeFilter: FILTER_DEFAULT,
   films: [],
   filteredFilms: [],
+  isDataLoaded: false,
   renderedFilmsCount: FILMS_PER_STEP,
   error: null,
   filters: [],
@@ -42,6 +43,9 @@ const reducer = createReducer(initialState, (builder) => {
       state.films = action.payload;
       state.filteredFilms = action.payload;
       state.filters = setFilters(state.films);
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
     })
     .addCase(loadPromoFilm, (state, action) => {
       state.promoFilm = action.payload;

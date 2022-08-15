@@ -10,10 +10,16 @@ import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
 import PrivateRoute from '../private-route/private-route';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import {useAppSelector} from '../../hooks';
+import Spinner from '../../pages/spinner/spinner';
 
 function App(): JSX.Element {
 
-  const films = useAppSelector((state) => state.films);
+  const {films, isDataLoaded} = useAppSelector((state) => state);
+
+  if (isDataLoaded) {
+    return <Spinner />;
+  }
+
   return (
     <BrowserRouter>
       <ScrollToTop />

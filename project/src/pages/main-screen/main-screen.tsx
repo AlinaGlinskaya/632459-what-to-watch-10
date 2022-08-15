@@ -13,11 +13,8 @@ import {resetFilters} from '../../store/action';
 import {useAppDispatch} from '../../hooks';
 
 function MainScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.filteredFilms);
-  const {renderedFilmsCount} = useAppSelector((state) => state);
-  const {promoFilm} = useAppSelector((state) => state);
-
-  const filmsToRender = films.slice(0, renderedFilmsCount);
+  const {filteredFilms, renderedFilmsCount, promoFilm} = useAppSelector((state) => state);
+  const filmsToRender = filteredFilms.slice(0, renderedFilmsCount);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
