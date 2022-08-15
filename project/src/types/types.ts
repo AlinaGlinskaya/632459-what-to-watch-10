@@ -5,17 +5,6 @@ export type FilmCardProps = {
   film: FilmMain
 }
 
-export type AppScreenProps = {
-  promoFilm: {
-    id: number,
-    img: string,
-    alt: string,
-    title: string,
-    genre: string,
-    year: number
-  };
-}
-
 export type FilmMain = {
   id: number
   name: string
@@ -81,7 +70,7 @@ export type SimilarFilmsProps = {
 }
 
 export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective'
-| 'Adventure' | 'Action' | 'Fantasy';
+| 'Adventure' | 'Action' | 'Fantasy' | 'Undefined';
 
 export type InitialState = {
   activeFilter: string,
@@ -89,7 +78,8 @@ export type InitialState = {
   renderedFilmsCount: number,
   filteredFilms: FilmMain[],
   error: string | null,
-  filters: (Genre | 'All')[]
+  filters: (Genre | 'All')[],
+  promoFilm: FilmMain | null
 }
 
 export type State = ReturnType<typeof store.getState>;

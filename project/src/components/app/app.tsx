@@ -7,12 +7,11 @@ import MyListScreen from '../../pages/my-list-screen/my-list-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
-import {AppScreenProps} from '../../types/types';
 import PrivateRoute from '../private-route/private-route';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import {useAppSelector} from '../../hooks';
 
-function App({promoFilm}: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
 
   const films = useAppSelector((state) => state.films);
   return (
@@ -20,7 +19,7 @@ function App({promoFilm}: AppScreenProps): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route
-          path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm}/>}
+          path={AppRoute.Main} element={<MainScreen />}
         />
         <Route path={AppRoute.Films}>
           <Route path=":id" element={<MoviePageScreen films={films} />} />

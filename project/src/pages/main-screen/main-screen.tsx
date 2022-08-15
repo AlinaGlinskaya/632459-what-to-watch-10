@@ -1,6 +1,5 @@
 import React from 'react';
 import FilmsList from '../../components/films-list/films-list';
-import {AppScreenProps} from '../../types/types';
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import {AppRoute} from '../../const';
@@ -13,9 +12,10 @@ import {useEffect} from 'react';
 import {resetFilters} from '../../store/action';
 import {useAppDispatch} from '../../hooks';
 
-function MainScreen({promoFilm}: AppScreenProps): JSX.Element {
+function MainScreen(): JSX.Element {
   const films = useAppSelector((state) => state.filteredFilms);
-  const renderedFilmsCount = useAppSelector((state) => state.renderedFilmsCount);
+  const {renderedFilmsCount} = useAppSelector((state) => state);
+  const {promoFilm} = useAppSelector((state) => state);
 
   const filmsToRender = films.slice(0, renderedFilmsCount);
 
@@ -30,7 +30,7 @@ function MainScreen({promoFilm}: AppScreenProps): JSX.Element {
     <React.Fragment>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoFilm?.backgroundImage} alt={promoFilm?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -46,18 +46,18 @@ function MainScreen({promoFilm}: AppScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.img} alt={promoFilm.alt} width="218" height="327" />
+              <img src={promoFilm?.posterImage} alt={promoFilm?.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.year}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/:id=${promoFilm.id}`)}>
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/:id=${promoFilm?.id}`)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
