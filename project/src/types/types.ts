@@ -80,12 +80,14 @@ export type SimilarFilmsProps = {
   film: FilmMain
 }
 
-export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective';
+export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective'
+| 'Adventure' | 'Action' | 'Fantasy';
 
 export type InitialState = {
   activeFilter: string,
   films: FilmMain[],
   renderedFilmsCount: number,
+  filteredFilms: FilmMain[],
   error: string | null,
   filters: (Genre | 'All')[]
 }

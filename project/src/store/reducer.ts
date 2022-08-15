@@ -9,13 +9,14 @@ export const FILMS_PER_STEP = 8;
 const initialState: InitialState = {
   activeFilter: FILTER_DEFAULT,
   films: [],
+  filteredFilms: [],
   renderedFilmsCount: FILMS_PER_STEP,
   error: null,
-  filters: [FILTER_DEFAULT]
+  filters: []
 };
 
 const setFilters = (films: FilmMain[]) => {
-  const genres: (keyof typeof FiltersList)[] = ['All'];
+  const genres: (keyof typeof FiltersList)[] = [FILTER_DEFAULT];
   films.map((item: FilmMain) => genres.push(item.genre));
   const filters = [...new Set(genres)];
   return filters;
@@ -25,7 +26,7 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeFilter, (state, action) => {
       state.activeFilter = action.payload;
-      state.films = state.films.filter((film) => state.activeFilter === FILTER_DEFAULT ? true : film.genre === state.activeFilter);
+      state.filteredFilms = state.films.filter((film) => state.activeFilter === FILTER_DEFAULT ? true : film.genre === state.activeFilter);
       state.renderedFilmsCount = FILMS_PER_STEP;
     })
     .addCase(renderMoreFilms, (state) => {
@@ -33,11 +34,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(resetFilters, (state) => {
       state.activeFilter = FILTER_DEFAULT;
-      state.films = state.films.filter((film) => state.activeFilter === FILTER_DEFAULT ? true : film.genre === state.activeFilter);
+      state.filteredFilms = state.films;
       state.renderedFilmsCount = FILMS_PER_STEP;
     })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
+      state.filteredFilms = action.payload;
       state.filters = setFilters(state.films);
     })
     .addCase(setError, (state, action) => {

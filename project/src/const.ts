@@ -32,7 +32,10 @@ export const FiltersList: Record<Genre | 'All', string> = {
   'Romance': 'Romance',
   'SciFi': 'Sci-Fi',
   'Thriller': 'Thrillers',
-  'Detective': 'Detective'
+  'Detective': 'Detective',
+  'Adventure': 'Adventures',
+  'Action' : 'Action',
+  'Fantasy': 'Fantasy'
 };
 
 export const FILTER_DEFAULT = 'All';

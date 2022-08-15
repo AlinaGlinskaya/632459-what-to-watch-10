@@ -8,6 +8,7 @@ import ErrorMessage from './components/error-message/error-message';
 import {fetchFilmsAction} from './store/api-actions';
 
 store.dispatch(fetchFilmsAction());
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
