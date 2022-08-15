@@ -20,7 +20,7 @@ function App({promoFilm}: AppScreenProps): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route
-          path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm} films={films}/>}
+          path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm}/>}
         />
         <Route path={AppRoute.Films}>
           <Route path=":id" element={<MoviePageScreen films={films} />} />

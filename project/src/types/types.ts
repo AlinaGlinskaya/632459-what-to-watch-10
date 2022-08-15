@@ -14,7 +14,6 @@ export type AppScreenProps = {
     genre: string,
     year: number
   };
-  films: FilmMain[]
 }
 
 export type FilmMain = {
@@ -86,7 +85,9 @@ export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'K
 export type InitialState = {
   activeFilter: string,
   films: FilmMain[],
-  renderedFilmsCount: number
+  renderedFilmsCount: number,
+  error: string | null,
+  filters: (Genre | 'All')[]
 }
 
 export type State = ReturnType<typeof store.getState>;

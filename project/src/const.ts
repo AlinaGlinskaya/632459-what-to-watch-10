@@ -41,3 +41,5 @@ export enum APIRoute {
   Films = '/films',
   Promo = '/promo'
 }
+
+export const TIMEOUT_SHOW_ERROR = 2000;

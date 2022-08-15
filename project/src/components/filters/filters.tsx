@@ -2,11 +2,11 @@ import {changeFilter} from '../../store/action';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {MouseEvent} from 'react';
 import {FiltersList} from '../../const';
-import { filters } from '../../store/reducer';
 
 function Filters() {
   const dispatch = useAppDispatch();
   const activeFilter = useAppSelector((state) => state.activeFilter);
+  const filters = useAppSelector((state) => state.filters);
 
   const handleLinkClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();

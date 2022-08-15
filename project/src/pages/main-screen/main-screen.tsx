@@ -13,7 +13,8 @@ import {useEffect} from 'react';
 import {resetFilters} from '../../store/action';
 import {useAppDispatch} from '../../hooks';
 
-function MainScreen({promoFilm, films}: AppScreenProps): JSX.Element {
+function MainScreen({promoFilm}: AppScreenProps): JSX.Element {
+  const films = useAppSelector((state) => state.films);
   const renderedFilmsCount = useAppSelector((state) => state.renderedFilmsCount);
 
   const filmsToRender = films.slice(0, renderedFilmsCount);
