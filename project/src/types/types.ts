@@ -41,7 +41,7 @@ export type PrivateRouteProps = {
 
 export type VideoPlayerProps = {
   src: string,
-  posterImage: string,
+  poster: string,
   isPlaying: boolean
 }
 
