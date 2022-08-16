@@ -10,7 +10,7 @@ const initialState: InitialState = {
   activeFilter: FILTER_DEFAULT,
   films: [],
   filteredFilms: [],
-  isDataLoaded: false,
+  isDataLoading: false,
   renderedFilmsCount: FILMS_PER_STEP,
   error: null,
   filters: [],
@@ -45,7 +45,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.filters = setFilters(state.films);
     })
     .addCase(setDataLoadedStatus, (state, action) => {
-      state.isDataLoaded = action.payload;
+      state.isDataLoading = action.payload;
     })
     .addCase(loadPromoFilm, (state, action) => {
       state.promoFilm = action.payload;

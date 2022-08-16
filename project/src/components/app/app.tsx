@@ -14,9 +14,9 @@ import Spinner from '../../pages/spinner/spinner';
 
 function App(): JSX.Element {
 
-  const {films, isDataLoaded} = useAppSelector((state) => state);
+  const {films, isDataLoading} = useAppSelector((state) => state);
 
-  if (isDataLoaded) {
+  if (isDataLoading) {
     return <Spinner />;
   }
 

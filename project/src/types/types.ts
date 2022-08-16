@@ -77,7 +77,7 @@ export type InitialState = {
   films: FilmMain[],
   renderedFilmsCount: number,
   filteredFilms: FilmMain[],
-  isDataLoaded: boolean,
+  isDataLoading: boolean,
   error: string | null,
   filters: (Genre | 'All')[],
   promoFilm: FilmMain | null
