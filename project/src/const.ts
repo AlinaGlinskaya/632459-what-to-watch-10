@@ -42,7 +42,9 @@ export const FILTER_DEFAULT = 'All';
 
 export enum APIRoute {
   Films = '/films',
-  Promo = '/promo'
+  Promo = '/promo',
+  Login = '/login',
+  Logout = '/logout'
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

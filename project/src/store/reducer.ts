@@ -1,7 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeFilter, loadFilms, loadPromoFilm, renderMoreFilms, resetFilters, setError, setDataLoadedStatus} from './action';
-import {FILTER_DEFAULT} from '../const';
-import {FiltersList} from '../const';
+import {changeFilter, loadFilms, loadPromoFilm, renderMoreFilms, resetFilters, setError, setDataLoadingStatus, requireAuthorization} from './action';
+import {FILTER_DEFAULT, FiltersList, AuthorizationStatus} from '../const';
 import {FilmMain, InitialState} from '../types/types';
 
 export const FILMS_PER_STEP = 8;
@@ -14,7 +13,8 @@ const initialState: InitialState = {
   renderedFilmsCount: FILMS_PER_STEP,
   error: null,
   filters: [],
-  promoFilm: null
+  promoFilm: null,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const setFilters = (films: FilmMain[]) => {
@@ -44,7 +44,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.filteredFilms = action.payload;
       state.filters = setFilters(state.films);
     })
-    .addCase(setDataLoadedStatus, (state, action) => {
+    .addCase(setDataLoadingStatus, (state, action) => {
       state.isDataLoading = action.payload;
     })
     .addCase(loadPromoFilm, (state, action) => {
@@ -52,6 +52,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
