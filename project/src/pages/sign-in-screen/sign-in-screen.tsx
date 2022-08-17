@@ -3,9 +3,12 @@ import FooterLogo from '../../components/footer-logo/footer-logo';
 import {useRef, FormEvent} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {useNavigate} from 'react-router-dom';
-import { AuthData } from '../../types/types';
+import {AuthData} from '../../types/types';
 import {loginAction} from '../../store/api-actions';
-import { AppRoute } from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {processErrorHandle} from '../../services/process-error-handle';
 
 function SignInScreen(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -13,6 +16,7 @@ function SignInScreen(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {error, authorizationStatus} = useAppSelector((state) => state);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -27,9 +31,16 @@ function SignInScreen(): JSX.Element {
         password: passwordRef.current.value,
       });
     }
-
-    navigate(AppRoute.Main);
   };
+
+  useEffect(() => {
+    if (error) {
+      processErrorHandle(error);
+    }
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Main);
+    }
+  }, [error, authorizationStatus, navigate]);
 
   return(
     <div className="user-page">
@@ -43,11 +54,27 @@ function SignInScreen(): JSX.Element {
         <form onSubmit={handleFormSubmit} action="#" className="sign-in__form">
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input ref={emailRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input ref={emailRef}
+                className="sign-in__input"
+                type="email"
+                placeholder="Email address"
+                name="user-email"
+                id="user-email"
+                required
+              />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input ref={passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input
+                ref={passwordRef}
+                className="sign-in__input"
+                type="password"
+                placeholder="Password"
+                name="user-password"
+                id="user-password"
+                required
+                pattern='^(?=.*[a-z]).{0,}(?=.*\d).{1,}$'
+              />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
