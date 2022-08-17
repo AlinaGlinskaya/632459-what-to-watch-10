@@ -5,7 +5,6 @@ import {processErrorHandle} from './process-error-handle';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true
 };
 

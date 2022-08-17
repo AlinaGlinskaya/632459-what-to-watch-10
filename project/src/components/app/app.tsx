@@ -1,5 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import MainScreen from '../../pages/main-screen/main-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import MoviePageScreen from '../../pages/movie-page-screen/movie-page-screen';
@@ -14,7 +14,7 @@ import Spinner from '../../pages/spinner/spinner';
 
 function App(): JSX.Element {
 
-  const {films, isDataLoading} = useAppSelector((state) => state);
+  const {films, isDataLoading, authorizationStatus} = useAppSelector((state) => state);
 
   if (isDataLoading) {
     return <Spinner />;
@@ -33,7 +33,7 @@ function App(): JSX.Element {
         </Route>
         <Route
           path={AppRoute.MyList}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen films={films} /></PrivateRoute>}
+          element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListScreen films={films} /></PrivateRoute>}
         />
         <Route path={AppRoute.Player}>
           <Route path=":id" element={<PlayerScreen films={films} />} />

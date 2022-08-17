@@ -1,9 +1,10 @@
 import React from 'react';
 import FilmsList from '../../components/films-list/films-list';
 import MainLogo from '../../components/main-logo/main-logo';
+import UserBlockAnonim from '../../components/user-block-anonim/user-block-anonim';
+import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import {AppRoute} from '../../const';
-import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import Filters from '../../components/filters/filters';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
@@ -34,10 +35,8 @@ function MainScreen(): JSX.Element {
 
         <header className="page-header film-card__head">
           <MainLogo />
-
-          <div className="user-block">
-            <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
-          </div>
+          <UserBlockAnonim />
+          <UserBlockAuth avatarUrl='img/' />
         </header>
 
         <div className="film-card__wrap">

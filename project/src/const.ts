@@ -3,6 +3,7 @@ import {Genre} from './types/types';
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
+  SignOut = '/logout',
   MyList = '/mylist',
   Films = '/films',
   AddReview = 'review',

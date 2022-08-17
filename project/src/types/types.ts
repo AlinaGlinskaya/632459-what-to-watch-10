@@ -100,3 +100,7 @@ export type UserData = {
   name: string
   token: string
 }
+
+export type UserBlockProps = {
+  avatarUrl: string,
+}
