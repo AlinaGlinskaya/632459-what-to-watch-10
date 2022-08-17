@@ -1,10 +1,18 @@
-import {Link} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../const';
 import {UserBlockProps} from '../../types/types';
-import { useAppSelector } from '../../hooks';
+import {useAppSelector} from '../../hooks';
+import {MouseEvent} from 'react';
+import {useAppDispatch} from '../../hooks';
+import {logoutAction} from '../../store/api-actions';
 
 function UserBlockAuth({avatarUrl}: UserBlockProps): JSX.Element | null {
   const {authorizationStatus} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+
+  const handleLinkLogoutClick = (evt: MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    dispatch(logoutAction());
+  };
 
   return (authorizationStatus === AuthorizationStatus.Auth)
     ?
@@ -15,7 +23,7 @@ function UserBlockAuth({avatarUrl}: UserBlockProps): JSX.Element | null {
         </div>
       </li>
       <li className="user-block__item">
-        <Link to={AppRoute.SignOut} className="user-block__link">Sign out</Link>
+        <a href="/#" onClick={handleLinkLogoutClick} className="user-block__link">Sign out</a>
       </li>
     </ul>
     : null;

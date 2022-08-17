@@ -14,7 +14,7 @@ import {resetFilters} from '../../store/action';
 import {useAppDispatch} from '../../hooks';
 
 function MainScreen(): JSX.Element {
-  const {filteredFilms, renderedFilmsCount, promoFilm} = useAppSelector((state) => state);
+  const {filteredFilms, renderedFilmsCount, promoFilm, userData} = useAppSelector((state) => state);
   const filmsToRender = filteredFilms.slice(0, renderedFilmsCount);
 
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function MainScreen(): JSX.Element {
         <header className="page-header film-card__head">
           <MainLogo />
           <UserBlockAnonim />
-          <UserBlockAuth avatarUrl='img/' />
+          <UserBlockAuth avatarUrl={userData?.avatarUrl} />
         </header>
 
         <div className="film-card__wrap">

@@ -81,7 +81,8 @@ export type InitialState = {
   error: string | null,
   filters: (Genre | 'All')[],
   promoFilm: FilmMain | null,
-  authorizationStatus: AuthorizationStatus
+  authorizationStatus: AuthorizationStatus,
+  userData: UserData | null
 }
 
 export type State = ReturnType<typeof store.getState>;
@@ -102,5 +103,5 @@ export type UserData = {
 }
 
 export type UserBlockProps = {
-  avatarUrl: string,
+  avatarUrl?: string,
 }

@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import {FilmsMainProps, FilmMain} from '../types/types';
+import {FilmsMainProps, FilmMain, UserData} from '../types/types';
 import { AuthorizationStatus } from '../const';
 
 export const changeFilter = createAction('main/changeFilter', (value) => ({
@@ -12,3 +12,4 @@ export const loadPromoFilm = createAction<FilmMain>('data/loadPromoFilm');
 export const setError = createAction<string | null>('main/setError');
 export const setDataLoadingStatus = createAction<boolean>('data/setDataLoadingStatus');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const setUserData = createAction<UserData>('user/setUserData');
