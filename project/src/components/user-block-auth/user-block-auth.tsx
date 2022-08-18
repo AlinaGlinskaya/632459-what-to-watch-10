@@ -6,7 +6,7 @@ import {useAppDispatch} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
 
 function UserBlockAuth({avatarUrl}: UserBlockProps): JSX.Element | null {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
 
   const handleLinkLogoutClick = (evt: MouseEvent<HTMLAnchorElement>) => {

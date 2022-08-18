@@ -3,7 +3,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import { useAppSelector } from '../../hooks';
 
 function UserBlockAnonim(): JSX.Element |null {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (authorizationStatus !== AuthorizationStatus.Auth)
     ?
