@@ -1,15 +1,14 @@
 import MainLogo from '../../components/main-logo/main-logo';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import {FilmsMainProps} from '../../types/types';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import {useParams} from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
+import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 
-function AddReviewScreen({films}: FilmsMainProps): JSX.Element {
-  const params = useParams().id;
-  const filmId = Number(params?.split('=')[1]);
-  const film = films.find((item) => item.id === filmId);
+function AddReviewScreen(): JSX.Element {
+
+  const {film, userData} = useAppSelector((state) => state);
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
   }
@@ -28,7 +27,7 @@ function AddReviewScreen({films}: FilmsMainProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.Films}/:id=${film.id}`} className="breadcrumbs__link">{film.name}</Link>
+                <Link to={`${AppRoute.Films}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a href="/#" className="breadcrumbs__link">Add review</a>
@@ -36,9 +35,7 @@ function AddReviewScreen({films}: FilmsMainProps): JSX.Element {
             </ul>
           </nav>
 
-          <div className="user-block">
-            <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
-          </div>
+          <UserBlockAuth avatarUrl={userData?.avatarUrl} />
         </header>
 
         <div className="film-card__poster film-card__poster--small">

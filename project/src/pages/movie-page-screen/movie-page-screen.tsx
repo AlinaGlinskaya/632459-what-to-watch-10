@@ -2,7 +2,7 @@ import React from 'react';
 import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useNavigate} from 'react-router-dom';
@@ -12,9 +12,11 @@ import {fetchFilmAction, fetchSimilarFilmsAction, fetchCommentsAction} from '../
 import {useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {useAppDispatch} from '../../hooks';
+import UserBlockAnonim from '../../components/user-block-anonim/user-block-anonim';
+import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 
 function MoviePageScreen(): JSX.Element {
-  const {film, similarFilms} = useAppSelector((state) => state);
+  const {film, similarFilms, userData, authorizationStatus} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
@@ -43,9 +45,8 @@ function MoviePageScreen(): JSX.Element {
           <header className="page-header film-card__head">
             <MainLogo />
 
-            <div className="user-block">
-              <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
-            </div>
+            <UserBlockAnonim />
+            <UserBlockAuth avatarUrl={userData?.avatarUrl} />
           </header>
 
           <div className="film-card__wrap">
@@ -70,7 +71,9 @@ function MoviePageScreen(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
+                {authorizationStatus === AuthorizationStatus.Auth
+                &&
+                <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>

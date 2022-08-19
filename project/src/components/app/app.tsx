@@ -29,7 +29,7 @@ function App(): JSX.Element {
         />
         <Route path={AppRoute.Films}>
           <Route path=":id" element={<MoviePageScreen />} />
-          <Route path=":id/review" element={<AddReviewScreen films={films} />} />
+          <Route path=":id/review" element={<PrivateRoute authorizationStatus={authorizationStatus}><AddReviewScreen /></PrivateRoute>} />
         </Route>
         <Route
           path={AppRoute.MyList}
