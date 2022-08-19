@@ -1,18 +1,17 @@
-import {TabsProps} from '../../types/types';
-import {comments} from '../../mocks/comments';
+import {CommentsProps} from '../../types/types';
 import Comment from '../comment/comment';
 
-function Reviews({film}: TabsProps): JSX.Element {
+function Reviews({comments}: CommentsProps): JSX.Element {
   const commentsLeft = comments.slice(0, (comments.length / 2));
   const commentsRight = comments.slice((comments.length / 2), comments.length);
 
-  const commentsLeftItems = commentsLeft.map((item) => (
+  const commentsLeftItems = commentsLeft?.map((item) => (
     <Comment
       comment={item}
       key={item.id}
     />));
 
-  const commentsRightItems = commentsRight.map((item) => (
+  const commentsRightItems = commentsRight?.map((item) => (
     <Comment
       comment={item}
       key={item.id}

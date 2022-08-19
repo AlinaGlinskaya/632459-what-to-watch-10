@@ -19,3 +19,6 @@ export const loadFilm = createAction('data/loadFilm', (value) => ({
 export const loadSimilarFilms = createAction('data/loadSimilarFlms', (value) => ({
   payload: value,
 }));
+export const loadComments = createAction('data/loadComments', (value) => ({
+  payload: value,
+}));

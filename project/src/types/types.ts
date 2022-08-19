@@ -2,7 +2,7 @@ import {AuthorizationStatus} from '../const';
 import {store} from '../store/index.js';
 
 export type FilmCardProps = {
-  film: FilmMain
+  film: FilmMain | null
 }
 
 export type FilmMain = {
@@ -40,13 +40,9 @@ export type PrivateRouteProps = {
 }
 
 export type VideoPlayerProps = {
-  src: string,
-  poster: string,
+  src?: string,
+  poster?: string,
   isPlaying: boolean
-}
-
-export type TabsProps = {
-  film: FilmMain
 }
 
 export type Comment = {
@@ -64,8 +60,12 @@ export type CommentProps = {
   comment: Comment
 }
 
+export type CommentsProps = {
+  comments: Comment[]
+}
+
 export type SimilarFilmsProps = {
-  films: FilmMain[] | null
+  films: FilmMain[]
 }
 
 export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective'
@@ -83,7 +83,8 @@ export type InitialState = {
   authorizationStatus: AuthorizationStatus,
   userData: UserData | null,
   film: FilmMain | null,
-  similarFilms: FilmMain[] | null
+  similarFilms: FilmMain[],
+  comments: Comment[]
 }
 
 export type State = ReturnType<typeof store.getState>;

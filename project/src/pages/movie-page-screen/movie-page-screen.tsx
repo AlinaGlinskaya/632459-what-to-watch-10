@@ -5,16 +5,15 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import {FilmsMainProps } from '../../types/types';
 import {useNavigate} from 'react-router-dom';
 import FilmTabs from '../../components/tabs/tabs';
 import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
-import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {fetchFilmAction, fetchSimilarFilmsAction, fetchCommentsAction} from '../../store/api-actions';
 import {useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {useAppDispatch} from '../../hooks';
 
-function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
+function MoviePageScreen(): JSX.Element {
   const {film, similarFilms} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -24,6 +23,7 @@ function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
   useEffect(() => {
     dispatch(fetchFilmAction(filmId));
     dispatch(fetchSimilarFilmsAction(filmId));
+    dispatch(fetchCommentsAction(filmId));
   }, [filmId, dispatch]);
 
   if (!film) {
@@ -32,7 +32,7 @@ function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
 
   return(
     <React.Fragment>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" style={{background: film.backgroundColor}}>
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img src={film.backgroundImage} alt={film.name} />
@@ -82,7 +82,7 @@ function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
               <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
             </div>
 
-            <FilmTabs film={film}/>
+            {<FilmTabs />}
 
           </div>
         </div>

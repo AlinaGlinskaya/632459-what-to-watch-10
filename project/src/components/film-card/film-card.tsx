@@ -21,11 +21,11 @@ function FilmCard({film}: FilmCardProps) {
     >
       <VideoPlayer
         isPlaying = {isPlaying}
-        src={film.previewVideoLink}
-        poster={film.previewImage}
+        src={film?.previewVideoLink}
+        poster={film?.previewImage}
       />
       <h3 className="small-film-card__title">
-        <Link to={`${AppRoute.Films}/${film.id}`} className="small-film-card__link">{film.name}</Link>
+        <Link to={`${AppRoute.Films}/${film?.id}`} className="small-film-card__link">{film?.name}</Link>
       </h3>
     </article>
   );

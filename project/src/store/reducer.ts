@@ -1,5 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeFilter, loadFilms, loadPromoFilm, renderMoreFilms, resetFilters, setError, setDataLoadingStatus, requireAuthorization, setUserData, loadFilm, loadSimilarFilms} from './action';
+import {changeFilter, loadFilms, loadPromoFilm, renderMoreFilms, resetFilters,
+  loadComments, setError, setDataLoadingStatus, requireAuthorization, setUserData, loadFilm, loadSimilarFilms} from './action';
 import {FILTER_DEFAULT, FiltersList, AuthorizationStatus} from '../const';
 import {FilmMain, InitialState} from '../types/types';
 
@@ -17,7 +18,8 @@ const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: null,
   film: null,
-  similarFilms: null
+  similarFilms: [],
+  comments: []
 };
 
 const setFilters = (films: FilmMain[]) => {
@@ -58,6 +60,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadSimilarFilms, (state, action) => {
       state.similarFilms = action.payload;
+    })
+    .addCase(loadComments, (state, action) => {
+      state.comments = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;

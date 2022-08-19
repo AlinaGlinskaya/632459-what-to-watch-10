@@ -28,7 +28,7 @@ function App(): JSX.Element {
           path={AppRoute.Main} element={<MainScreen />}
         />
         <Route path={AppRoute.Films}>
-          <Route path=":id" element={<MoviePageScreen films={films} />} />
+          <Route path=":id" element={<MoviePageScreen />} />
           <Route path=":id/review" element={<AddReviewScreen films={films} />} />
         </Route>
         <Route

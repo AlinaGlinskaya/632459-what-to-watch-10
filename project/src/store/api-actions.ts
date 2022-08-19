@@ -1,8 +1,8 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
 import {APIRoute, TIMEOUT_SHOW_ERROR, AuthorizationStatus} from '../const';
-import {FilmsMainProps, AppDispatch, State, FilmMain, AuthData, UserData} from '../types/types';
-import {loadFilms, loadPromoFilm, setError, setDataLoadingStatus, requireAuthorization, setUserData, loadFilm, loadSimilarFilms} from './action';
+import {FilmsMainProps, AppDispatch, State, FilmMain, AuthData, UserData, CommentsProps} from '../types/types';
+import {loadFilms, loadPromoFilm, setError, setDataLoadingStatus, requireAuthorization, setUserData, loadFilm, loadSimilarFilms, loadComments} from './action';
 import { store } from '.';
 import {saveToken, dropToken} from '../services/token';
 
@@ -63,6 +63,18 @@ export const fetchSimilarFilmsAction = createAsyncThunk<void, FilmMain['id'], {
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<FilmMain>(`${APIRoute.Films}/${id}/similar`);
     dispatch(loadSimilarFilms(data));
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk<void, FilmMain['id'], {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchComments',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<CommentsProps>(`${APIRoute.Comments}/${id}`);
+    dispatch(loadComments(data));
   },
 );
 
