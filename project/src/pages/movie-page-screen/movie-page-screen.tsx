@@ -9,12 +9,23 @@ import {FilmsMainProps } from '../../types/types';
 import {useNavigate} from 'react-router-dom';
 import FilmTabs from '../../components/tabs/tabs';
 import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
+import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {useAppDispatch} from '../../hooks';
 
 function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
+  const {film, similarFilms} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const params = useParams().id;
-  const filmId = Number(params?.split('=')[1]);
-  const film = films.find((item) => item.id === filmId);
+  const params = useParams();
+  const filmId = Number(params?.id);
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(filmId));
+    dispatch(fetchSimilarFilmsAction(filmId));
+  }, [filmId, dispatch]);
+
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
   }
@@ -81,7 +92,7 @@ function MoviePageScreen({films}: FilmsMainProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <SimilarFilmsList films={films} film={film}></SimilarFilmsList>
+          <SimilarFilmsList films={similarFilms}></SimilarFilmsList>
         </section>
 
         <footer className="page-footer">

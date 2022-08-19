@@ -13,3 +13,9 @@ export const setError = createAction<string | null>('main/setError');
 export const setDataLoadingStatus = createAction<boolean>('data/setDataLoadingStatus');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setUserData = createAction<UserData>('user/setUserData');
+export const loadFilm = createAction('data/loadFilm', (value) => ({
+  payload: value,
+}));
+export const loadSimilarFilms = createAction('data/loadSimilarFlms', (value) => ({
+  payload: value,
+}));

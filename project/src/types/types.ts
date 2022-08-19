@@ -65,8 +65,7 @@ export type CommentProps = {
 }
 
 export type SimilarFilmsProps = {
-  films: FilmMain[],
-  film: FilmMain
+  films: FilmMain[] | null
 }
 
 export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective'
@@ -82,7 +81,9 @@ export type InitialState = {
   filters: (Genre | 'All')[],
   promoFilm: FilmMain | null,
   authorizationStatus: AuthorizationStatus,
-  userData: UserData | null
+  userData: UserData | null,
+  film: FilmMain | null,
+  similarFilms: FilmMain[] | null
 }
 
 export type State = ReturnType<typeof store.getState>;
