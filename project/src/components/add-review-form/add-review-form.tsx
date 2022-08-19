@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {ChangeEvent} from 'react';
+import {ChangeEvent, FormEvent} from 'react';
 
 function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({
@@ -12,8 +12,12 @@ function AddReviewForm(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
+  const formSubmitHandle = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+  };
+
   return (
-    <form action="#" className="add-review__form">
+    <form action="#" className="add-review__form" onSubmit={formSubmitHandle}>
       <div className="rating">
         <div className="rating__stars">
           <input className="rating__input" id="star-10" type="radio" name="rating" onChange={formChangeHandle} value='10' />
@@ -53,7 +57,6 @@ function AddReviewForm(): JSX.Element {
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
-
       </div>
     </form>
   );

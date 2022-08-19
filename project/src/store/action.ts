@@ -22,3 +22,6 @@ export const loadSimilarFilms = createAction('data/loadSimilarFlms', (value) => 
 export const loadComments = createAction('data/loadComments', (value) => ({
   payload: value,
 }));
+export const addComment = createAction('data/addComment', (value) => ({
+  payload: value,
+}));

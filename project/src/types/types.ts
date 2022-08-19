@@ -56,6 +56,12 @@ export type Comment = {
     }
 }
 
+export type CommentData = {
+  comment: string,
+  rating: number,
+  filmId: number
+}
+
 export type CommentProps = {
   comment: Comment
 }
