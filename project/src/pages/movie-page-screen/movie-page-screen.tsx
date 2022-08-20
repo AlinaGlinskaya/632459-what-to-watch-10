@@ -8,7 +8,7 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useNavigate} from 'react-router-dom';
 import FilmTabs from '../../components/tabs/tabs';
 import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
-import {fetchFilmAction, fetchSimilarFilmsAction, fetchCommentsAction} from '../../store/api-actions';
+import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {useAppDispatch} from '../../hooks';
@@ -25,7 +25,6 @@ function MoviePageScreen(): JSX.Element {
   useEffect(() => {
     dispatch(fetchFilmAction(filmId));
     dispatch(fetchSimilarFilmsAction(filmId));
-    dispatch(fetchCommentsAction(filmId));
   }, [filmId, dispatch]);
 
   if (!film) {

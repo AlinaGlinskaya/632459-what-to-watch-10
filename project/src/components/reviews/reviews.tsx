@@ -1,7 +1,22 @@
-import {CommentsProps} from '../../types/types';
 import Comment from '../comment/comment';
+import {useEffect} from 'react';
+import {fetchCommentsAction} from '../../store/api-actions';
+import {useAppDispatch} from '../../hooks';
+import {useParams} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
 
-function Reviews({comments}: CommentsProps): JSX.Element {
+function Reviews(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+  const params = useParams();
+  const filmId = Number(params?.id);
+
+  useEffect(() => {
+    dispatch(fetchCommentsAction(filmId));
+  }, [filmId, dispatch]);
+
+  const {comments} = useAppSelector((state) => state);
+
   const commentsLeft = comments.slice(0, (Math.ceil(comments.length / 2)));
   const commentsRight = comments.slice(Math.ceil(comments.length / 2), comments.length);
 
