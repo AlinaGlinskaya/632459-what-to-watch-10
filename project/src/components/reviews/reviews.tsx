@@ -2,8 +2,8 @@ import {CommentsProps} from '../../types/types';
 import Comment from '../comment/comment';
 
 function Reviews({comments}: CommentsProps): JSX.Element {
-  const commentsLeft = comments.slice(0, (comments.length / 2));
-  const commentsRight = comments.slice((comments.length / 2), comments.length);
+  const commentsLeft = comments.slice(0, (Math.ceil(comments.length / 2)));
+  const commentsRight = comments.slice(Math.ceil(comments.length / 2), comments.length);
 
   const commentsLeftItems = commentsLeft?.map((item) => (
     <Comment

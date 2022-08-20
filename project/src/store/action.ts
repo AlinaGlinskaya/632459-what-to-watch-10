@@ -23,3 +23,4 @@ export const loadComments = createAction('data/loadComments', (value) => ({
   payload: value,
 }));
 export const addComment = createAction('data/addComment');
+export const setPostingStatus = createAction<boolean>('data/setPostingStatus');

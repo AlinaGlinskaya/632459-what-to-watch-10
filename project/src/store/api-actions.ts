@@ -2,8 +2,8 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
 import {APIRoute, TIMEOUT_SHOW_ERROR, AuthorizationStatus} from '../const';
 import {FilmsMainProps, AppDispatch, State, FilmMain, AuthData, UserData, CommentsProps, CommentData} from '../types/types';
-import {loadFilms, loadPromoFilm, setError, setDataLoadingStatus, requireAuthorization, setUserData, loadFilm, loadSimilarFilms, loadComments} from './action';
-import { store } from '.';
+import {loadFilms, loadPromoFilm, setError, setDataLoadingStatus, requireAuthorization, setUserData, loadFilm, loadSimilarFilms, loadComments, setPostingStatus} from './action';
+import {store} from '.';
 import {saveToken, dropToken} from '../services/token';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
@@ -102,11 +102,9 @@ export const addCommentAction = createAsyncThunk<void, [CommentData, FilmMain['i
 }>(
   'data/addComment',
   async ([{comment, rating}, filmId], {dispatch, extra: api}) => {
-    try {
-      await api.post<Comment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
-    } catch (error) {
-      dispatch(setError);
-    }
+    dispatch(setPostingStatus(true));
+    await api.post<Comment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+    dispatch(setPostingStatus(false));
   },
 );
 

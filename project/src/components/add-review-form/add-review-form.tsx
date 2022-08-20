@@ -1,33 +1,60 @@
 import {useState} from 'react';
 import {ChangeEvent, FormEvent} from 'react';
 import {useDispatch} from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { addCommentAction } from '../../store/api-actions';
-import { TypedDispatch } from '../../types/types';
+import {useParams} from 'react-router-dom';
+import {addCommentAction} from '../../store/api-actions';
+import {TypedDispatch} from '../../types/types';
+import {useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {AppRoute} from '../../const';
+import {useNavigate} from 'react-router-dom';
+import {processErrorHandle} from '../../services/process-error-handle';
+
+const MIN_REVIEW_LENGTH = 50;
+const MAX_REVIEW_LENGTH = 400;
 
 function AddReviewForm(): JSX.Element {
+
   const [formData, setFormData] = useState({
     rating: '',
     'review-text': ''
   });
 
+  const [form, setFormFilled] = useState({
+    filled: false
+  });
+
   const dispatch = useDispatch<TypedDispatch>();
   const params = useParams();
   const filmId = Number(params.id);
+  const navigate = useNavigate();
+  const {isPosting, error, film} = useAppSelector((state) => state);
+
+  useEffect(() => {
+    if (error) {
+      processErrorHandle(error);
+    }
+  }, [error]);
 
   const formChangeHandle = (evt: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
+    if (formData['review-text'].length >= MIN_REVIEW_LENGTH && formData['review-text'].length <= MAX_REVIEW_LENGTH && formData['rating'].length > 0) {
+      setFormFilled({...form, filled: true});
+    } else {
+      setFormFilled({...form, filled: false});
+    }
   };
 
-  const form = {
+  const comment = {
     comment: formData['review-text'],
     rating: Number(formData['rating'])
   };
 
   const formSubmitHandle = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(addCommentAction([form, filmId]));
+    dispatch(addCommentAction([comment, filmId]));
+    navigate(`${AppRoute.Films}/${filmId}`);
   };
 
   return (
@@ -66,10 +93,19 @@ function AddReviewForm(): JSX.Element {
         </div>
       </div>
 
-      <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text" onChange={formChangeHandle} placeholder="Review text"></textarea>
+      <div className="add-review__text" style={{background: film?.backgroundColor, filter: 'invert(5%)'}}>
+        <textarea
+          className="add-review__textarea"
+          name="review-text"
+          id="review-text"
+          onChange={formChangeHandle}
+          placeholder="Review text"
+          minLength={MIN_REVIEW_LENGTH}
+          maxLength={MAX_REVIEW_LENGTH}
+        >
+        </textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button className="add-review__btn" type="submit" disabled={(isPosting || !form.filled) && true}>Post</button>
         </div>
       </div>
     </form>

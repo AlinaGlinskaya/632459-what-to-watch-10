@@ -2,8 +2,12 @@ import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import {FilmsMainProps} from '../../types/types';
 import MyList from '../../components/my-list/my-list';
+import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
+import {useAppSelector} from '../../hooks';
 
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
+
+  const {userData} = useAppSelector((state) => state);
 
   return(
     <div className="user-page">
@@ -11,16 +15,7 @@ function MyListScreen({films}: FilmsMainProps): JSX.Element {
         <MainLogo />
 
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </li>
-          <li className="user-block__item">
-            <a href="/#" className="user-block__link">Sign out</a>
-          </li>
-        </ul>
+        <UserBlockAuth avatarUrl={userData?.avatarUrl} />
       </header>
 
       <section className="catalog">

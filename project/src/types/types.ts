@@ -103,7 +103,8 @@ export type InitialState = {
   userData: UserData | null,
   film: FilmMain | null,
   similarFilms: FilmMain[],
-  comments: Comment[]
+  comments: Comment[],
+  isPosting: boolean
 }
 
 export type State = ReturnType<typeof store.getState>;
