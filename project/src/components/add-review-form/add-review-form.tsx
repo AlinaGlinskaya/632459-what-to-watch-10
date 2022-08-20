@@ -1,5 +1,9 @@
 import {useState} from 'react';
 import {ChangeEvent, FormEvent} from 'react';
+import {useDispatch} from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { addCommentAction } from '../../store/api-actions';
+import { TypedDispatch } from '../../types/types';
 
 function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({
@@ -7,13 +11,23 @@ function AddReviewForm(): JSX.Element {
     'review-text': ''
   });
 
+  const dispatch = useDispatch<TypedDispatch>();
+  const params = useParams();
+  const filmId = Number(params.id);
+
   const formChangeHandle = (evt: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
 
+  const form = {
+    comment: formData['review-text'],
+    rating: Number(formData['rating'])
+  };
+
   const formSubmitHandle = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    dispatch(addCommentAction([form, filmId]));
   };
 
   return (

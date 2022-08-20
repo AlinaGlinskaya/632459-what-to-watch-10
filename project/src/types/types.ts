@@ -1,5 +1,10 @@
 import {AuthorizationStatus} from '../const';
 import {store} from '../store/index.js';
+import {useDispatch} from 'react-redux';
+import {AnyAction } from 'redux';
+import {ThunkAction, ThunkDispatch} from 'redux-thunk';
+import {AxiosInstance} from 'axios';
+import { ReduxState } from '../store/index.js';
 
 export type FilmCardProps = {
   film: FilmMain | null
@@ -58,8 +63,16 @@ export type Comment = {
 
 export type CommentData = {
   comment: string,
-  rating: number,
-  filmId: number
+  rating: number
+}
+
+export type CommentDispatch = {
+  comment: CommentData,
+  id: number,
+}
+
+export type CommentDispatchArray = {
+  data: CommentDispatch[]
 }
 
 export type CommentProps = {
@@ -96,7 +109,6 @@ export type InitialState = {
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
-
 export type AuthData = {
   email: string;
   password: string;
@@ -113,3 +125,12 @@ export type UserData = {
 export type UserBlockProps = {
   avatarUrl?: string,
 }
+
+export type TypedDispatch = ThunkDispatch<ReduxState, AxiosInstance, AnyAction>;
+export type TypedThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  ReduxState,
+  unknown,
+  AnyAction
+>;
+export const useTypedDispatch = () => useDispatch<TypedDispatch>();

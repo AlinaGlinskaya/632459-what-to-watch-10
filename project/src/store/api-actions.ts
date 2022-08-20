@@ -95,14 +95,18 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const addCommentAction = createAsyncThunk<void, CommentData, {
+export const addCommentAction = createAsyncThunk<void, [CommentData, FilmMain['id']], {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/addComment',
-  async ({filmId, comment, rating}, {extra: api}) => {
-    await api.post<CommentData>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+  async ([{comment, rating}, filmId], {dispatch, extra: api}) => {
+    try {
+      await api.post<Comment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+    } catch (error) {
+      dispatch(setError);
+    }
   },
 );
 

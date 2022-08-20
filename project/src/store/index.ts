@@ -13,3 +13,5 @@ export const store = configureStore({
       },
     }),
 });
+
+export type ReduxState = ReturnType<typeof reducer>;
