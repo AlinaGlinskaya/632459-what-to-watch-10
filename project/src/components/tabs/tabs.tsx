@@ -5,10 +5,18 @@ import Overview from '../overview/overview';
 import Reviews from '../reviews/reviews';
 import {TabName} from '../../const';
 import {useAppSelector} from '../../hooks';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function FilmTabs(): JSX.Element {
   const [activeTab, setActiveTab] = useState('overview');
   const {film} = useAppSelector((state) => state);
+  const params = useParams();
+  const filmId = Number(params?.id);
+
+  useEffect(() => {
+    setActiveTab(TabName.Overview);
+  }, [filmId]);
 
   const handleTabClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
