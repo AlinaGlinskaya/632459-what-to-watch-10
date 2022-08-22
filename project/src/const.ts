@@ -21,6 +21,20 @@ export enum TabName {
   Reviews = 'reviews'
 }
 
+export enum APIRoute {
+  Films = '/films',
+  Promo = '/promo',
+  Login = '/login',
+  Logout = '/logout',
+  Comments = '/comments'
+}
+
+export enum NameSpace {
+  Film = 'FILM',
+  User = 'USER',
+  Filter = 'FILTER'
+}
+
 export const FiltersList: Record<Genre | 'All', string> = {
   'All': 'All genres',
   'Comedy': 'Comedies',
@@ -40,12 +54,6 @@ export const FiltersList: Record<Genre | 'All', string> = {
 
 export const FILTER_DEFAULT = 'All';
 
-export enum APIRoute {
-  Films = '/films',
-  Promo = '/promo',
-  Login = '/login',
-  Logout = '/logout',
-  Comments = '/comments'
-}
-
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+

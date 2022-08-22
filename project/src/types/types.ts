@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {AnyAction } from 'redux';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {AxiosInstance} from 'axios';
-import { ReduxState } from '../store/index.js';
+import {ReduxState} from '../store/index.js';
 
 export type FilmCardProps = {
   film: FilmMain | null
@@ -71,10 +71,6 @@ export type CommentDispatch = {
   id: number,
 }
 
-export type CommentDispatchArray = {
-  data: CommentDispatch[]
-}
-
 export type CommentProps = {
   comment: Comment
 }
@@ -91,20 +87,26 @@ export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'K
 | 'Adventure' | 'Action' | 'Fantasy';
 
 export type InitialState = {
-  activeFilter: string,
-  films: FilmMain[],
-  renderedFilmsCount: number,
-  filteredFilms: FilmMain[],
   isDataLoading: boolean,
   error: string | null,
-  filters: (Genre | 'All')[],
   promoFilm: FilmMain | null,
-  authorizationStatus: AuthorizationStatus,
   userData: UserData | null,
   film: FilmMain | null,
   similarFilms: FilmMain[],
   comments: Comment[],
   isPosting: boolean
+}
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus
+}
+
+export type FilterProcess = {
+  activeFilter: string,
+  films: FilmMain[],
+  filteredFilms: FilmMain[],
+  filters: (Genre | 'All')[],
+  renderedFilmsCount: number,
 }
 
 export type State = ReturnType<typeof store.getState>;
