@@ -38,9 +38,11 @@ export const filterProcess = createSlice({
       state.filteredFilms = state.films;
       state.renderedFilmsCount = FILMS_PER_STEP;
     },
-    setFilters: (state) => {
+    initFilters: (state) => {
       state.filters = setFilters(state.films);
     }
   },
   extraReducers: {}
 });
+
+export const {changeFilter, renderMoreFilms, resetFilters, initFilters} = filterProcess.actions;
