@@ -1,6 +1,6 @@
 import {ShowMoreButtonProps} from '../../types/types';
 import {useAppDispatch} from '../../hooks';
-import { renderMoreFilms } from '../../store/action';
+import {renderMoreFilms} from '../../store/filter-process/filter-process';
 
 function ShowMoreButton({films, count}: ShowMoreButtonProps): JSX.Element | null {
   const dispatch = useAppDispatch();

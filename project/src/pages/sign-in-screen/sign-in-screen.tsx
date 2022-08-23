@@ -8,8 +8,7 @@ import {loginAction} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
-//import {processErrorHandle} from '../../services/process-error-handle';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function SignInScreen(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -35,13 +34,10 @@ function SignInScreen(): JSX.Element {
   };
 
   useEffect(() => {
-    // if (error) {
-    //   processErrorHandle(error);
-    // }
     if (authorizationStatus === AuthorizationStatus.Auth) {
       navigate(AppRoute.Main);
     }
-  }, [error, authorizationStatus, navigate]);
+  }, [authorizationStatus, navigate]);
 
   return(
     <div className="user-page">

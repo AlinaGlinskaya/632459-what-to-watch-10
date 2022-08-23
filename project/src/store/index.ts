@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {reducer} from './reducer';
 import {createAPI} from '../services/api';
 import {rootReducer} from './root-reducer';
+import {redirect} from './middlewares/redirect';
 
 export const api = createAPI();
 
@@ -12,7 +12,7 @@ export const store = configureStore({
       thunk: {
         extraArgument: api,
       },
-    }),
+    }).concat(redirect),
 });
 
-export type ReduxState = ReturnType<typeof reducer>;
+export type ReduxState = ReturnType<typeof rootReducer>;

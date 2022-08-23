@@ -33,8 +33,7 @@ export enum NameSpace {
   Film = 'FILM',
   User = 'USER',
   Filter = 'FILTER',
-  Comment = 'COMMENT',
-  Error = 'ERROR'
+  Comment = 'COMMENT'
 }
 
 export const FiltersList: Record<Genre | 'All', string> = {
@@ -55,7 +54,5 @@ export const FiltersList: Record<Genre | 'All', string> = {
 };
 
 export const FILTER_DEFAULT = 'All';
-
-export const TIMEOUT_SHOW_ERROR = 2000;
 
 

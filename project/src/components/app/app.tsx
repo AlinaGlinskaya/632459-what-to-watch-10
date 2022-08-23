@@ -1,4 +1,4 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import MainScreen from '../../pages/main-screen/main-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
@@ -13,6 +13,8 @@ import {useAppSelector} from '../../hooks';
 import Spinner from '../../pages/spinner/spinner';
 import {getFilms, getIsDataLoading} from '../../store/film-process/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
 
@@ -25,7 +27,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <ScrollToTop />
       <Routes>
         <Route
@@ -49,7 +51,7 @@ function App(): JSX.Element {
           path="*" element={<NotFoundScreen />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
