@@ -4,6 +4,7 @@ import {fetchCommentsAction} from '../../store/api-actions';
 import {useAppDispatch} from '../../hooks';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
+import {getComments} from '../../store/comment-process/selectors';
 
 function Reviews(): JSX.Element {
 
@@ -15,7 +16,7 @@ function Reviews(): JSX.Element {
     dispatch(fetchCommentsAction(filmId));
   }, [filmId, dispatch]);
 
-  const {comments} = useAppSelector((state) => state);
+  const comments = useAppSelector(getComments);
 
   const commentsLeft = comments.slice(0, (Math.ceil(comments.length / 2)));
   const commentsRight = comments.slice(Math.ceil(comments.length / 2), comments.length);

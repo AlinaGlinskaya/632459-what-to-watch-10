@@ -11,10 +11,14 @@ import PrivateRoute from '../private-route/private-route';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import {useAppSelector} from '../../hooks';
 import Spinner from '../../pages/spinner/spinner';
+import {getFilms, getIsDataLoading} from '../../store/film-process/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function App(): JSX.Element {
 
-  const {films, isDataLoading, authorizationStatus} = useAppSelector((state) => state);
+  const films = useAppSelector(getFilms);
+  const isDataLoading = useAppSelector(getIsDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (isDataLoading) {
     return <Spinner />;

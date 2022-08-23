@@ -4,9 +4,11 @@ import {useAppSelector} from '../../hooks';
 import {MouseEvent} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function UserBlockAuth({avatarUrl}: UserBlockProps): JSX.Element | null {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const dispatch = useAppDispatch();
 
   const handleLinkLogoutClick = (evt: MouseEvent<HTMLAnchorElement>) => {

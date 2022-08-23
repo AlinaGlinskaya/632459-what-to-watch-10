@@ -14,9 +14,14 @@ import {useEffect} from 'react';
 import {useAppDispatch} from '../../hooks';
 import UserBlockAnonim from '../../components/user-block-anonim/user-block-anonim';
 import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
+import {getFilm, getSimilarFilms} from '../../store/film-process/selectors';
+import {getAuthorizationStatus, getuserData} from '../../store/user-process/selectors';
 
 function MoviePageScreen(): JSX.Element {
-  const {film, similarFilms, userData, authorizationStatus} = useAppSelector((state) => state);
+  const film = useAppSelector(getFilm);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const userData = useAppSelector(getuserData);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();

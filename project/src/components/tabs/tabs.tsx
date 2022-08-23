@@ -5,12 +5,13 @@ import Overview from '../overview/overview';
 import Reviews from '../reviews/reviews';
 import {TabName} from '../../const';
 import {useAppSelector} from '../../hooks';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {getFilm} from '../../store/film-process/selectors';
 
 function FilmTabs(): JSX.Element {
   const [activeTab, setActiveTab] = useState('overview');
-  const {film} = useAppSelector((state) => state);
+  const film = useAppSelector(getFilm);
   const params = useParams();
   const filmId = Number(params?.id);
 

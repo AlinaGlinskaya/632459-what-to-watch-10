@@ -10,11 +10,17 @@ import Filters from '../../components/filters/filters';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import {useAppSelector } from '../../hooks';
 import {useEffect} from 'react';
-import {resetFilters} from '../../store/action';
+import { resetFilters } from '../../store/filter-process/filter-process';
 import {useAppDispatch} from '../../hooks';
+import {getFilteredFilms, getPromoFilm} from '../../store/film-process/selectors';
+import {getRenderedFilmsCount} from '../../store/filter-process/selectors';
+import {getuserData} from '../../store/user-process/selectors';
 
 function MainScreen(): JSX.Element {
-  const {filteredFilms, renderedFilmsCount, promoFilm, userData} = useAppSelector((state) => state);
+  const filteredFilms = useAppSelector(getFilteredFilms);
+  const renderedFilmsCount = useAppSelector(getRenderedFilmsCount);
+  const promoFilm = useAppSelector(getPromoFilm);
+  const userData = useAppSelector(getuserData);
   const filmsToRender = filteredFilms.slice(0, renderedFilmsCount);
 
   const navigate = useNavigate();

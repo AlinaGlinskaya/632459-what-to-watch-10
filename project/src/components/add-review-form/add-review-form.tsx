@@ -5,10 +5,12 @@ import {useParams} from 'react-router-dom';
 import {addCommentAction} from '../../store/api-actions';
 import {TypedDispatch} from '../../types/types';
 import {useAppSelector} from '../../hooks';
-import {useEffect} from 'react';
+//import {useEffect} from 'react';
 import {AppRoute} from '../../const';
 import {useNavigate} from 'react-router-dom';
-import {processErrorHandle} from '../../services/process-error-handle';
+//import {processErrorHandle} from '../../services/process-error-handle';
+import {getIsPosting} from '../../store/comment-process/selectors';
+import {getFilm} from '../../store/film-process/selectors';
 
 const MIN_REVIEW_LENGTH = 50;
 const MAX_REVIEW_LENGTH = 400;
@@ -28,13 +30,14 @@ function AddReviewForm(): JSX.Element {
   const params = useParams();
   const filmId = Number(params.id);
   const navigate = useNavigate();
-  const {isPosting, error, film} = useAppSelector((state) => state);
+  const isPosting = useAppSelector(getIsPosting);
+  const film = useAppSelector(getFilm);
 
-  useEffect(() => {
-    if (error) {
-      processErrorHandle(error);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     processErrorHandle(error);
+  //   }
+  // }, [error]);
 
   const formChangeHandle = (evt: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     const {name, value} = evt.target;

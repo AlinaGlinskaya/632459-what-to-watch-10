@@ -1,9 +1,10 @@
 import {Link} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import { useAppSelector } from '../../hooks';
+import {useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function UserBlockAnonim(): JSX.Element |null {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (authorizationStatus !== AuthorizationStatus.Auth)
     ?

@@ -2,13 +2,16 @@ import MainLogo from '../../components/main-logo/main-logo';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import { useAppSelector } from '../../hooks';
+import {useAppSelector} from '../../hooks';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
+import {getFilm} from '../../store/film-process/selectors';
+import {getuserData} from '../../store/user-process/selectors';
 
 function AddReviewScreen(): JSX.Element {
+  const film = useAppSelector(getFilm);
+  const userData = useAppSelector(getuserData);
 
-  const {film, userData} = useAppSelector((state) => state);
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
   }

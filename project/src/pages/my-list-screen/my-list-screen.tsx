@@ -4,10 +4,11 @@ import {FilmsMainProps} from '../../types/types';
 import MyList from '../../components/my-list/my-list';
 import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 import {useAppSelector} from '../../hooks';
+import { getuserData } from '../../store/user-process/selectors';
 
 function MyListScreen({films}: FilmsMainProps): JSX.Element {
 
-  const {userData} = useAppSelector((state) => state);
+  const userData = useAppSelector(getuserData);
 
   return(
     <div className="user-page">
