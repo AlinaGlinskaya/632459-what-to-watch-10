@@ -1,5 +1,6 @@
 import {VideoPlayerProps} from '../../types/types';
 import {useRef, useEffect} from 'react';
+import './video-player.css';
 
 
 function VideoPlayer({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
@@ -20,16 +21,11 @@ function VideoPlayer({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
   }, [isPlaying]);
 
   return (
-    <video
+    <video className="video-preview"
       ref={videoRef}
       src={src}
       poster={poster}
       muted
-      style={{
-        position: 'relative',
-        height: '100%',
-        width: '280px',
-      }}
     />
   );
 }

@@ -5,6 +5,7 @@ import {useAppDispatch} from '../../hooks';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {getComments} from '../../store/comment-process/selectors';
+import './reviews.css';
 
 function Reviews(): JSX.Element {
 

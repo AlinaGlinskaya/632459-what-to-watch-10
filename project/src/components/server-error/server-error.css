@@ -1,0 +1,22 @@
+.server-error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+  color: #d9cd8d;
+}
+
+.server-error__message small {
+  display: block;
+  margin-top: 50px;
+  text-align: center;
+}

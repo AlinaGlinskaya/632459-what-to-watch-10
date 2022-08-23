@@ -1,0 +1,19 @@
+.not-found {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  color: #d9cd8d;
+}
+
+.not-found__content {
+  margin: 0 auto;
+}
+
+.not-found__content small {
+  display: block;
+  margin-top: 30px;
+}
+
+.not-found__content a {
+  color: inherit;
+}

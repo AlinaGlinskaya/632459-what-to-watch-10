@@ -7,6 +7,7 @@ import {TypedDispatch} from '../../types/types';
 import {useAppSelector} from '../../hooks';
 import {getIsPosting} from '../../store/comment-process/selectors';
 import {getFilm} from '../../store/film-process/selectors';
+import './add-review-form.css';
 
 const MIN_REVIEW_LENGTH = 50;
 const MAX_REVIEW_LENGTH = 400;
@@ -84,7 +85,7 @@ function AddReviewForm(): JSX.Element {
         </div>
       </div>
 
-      <div className="add-review__text" style={{background: film?.backgroundColor, filter: 'invert(5%)'}}>
+      <div className="add-review__text" style={{background: film?.backgroundColor}}>
         <textarea
           className="add-review__textarea"
           name="review-text"

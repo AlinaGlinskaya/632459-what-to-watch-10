@@ -2,6 +2,7 @@ import MainLogo from '../../components/main-logo/main-logo';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import FooterLogo from '../../components/footer-logo/footer-logo';
+import './not-found-screen.css';
 
 function NotFoundScreen(): JSX.Element {
   return (
@@ -10,10 +11,10 @@ function NotFoundScreen(): JSX.Element {
         <MainLogo />
       </header>
 
-      <div className="sign-in user-page__content" style={{display: 'flex', alignItems: 'center'}}>
-        <div style={{margin: '0 auto'}}>
-          <h1><b>404.</b><br /><small style={{marginTop: '30px', display: 'block'}}>Page not found</small></h1>
-          <Link to={AppRoute.Main} style={{color: '#d9cd8d'}}>Return to main page</Link>
+      <div className="not-found">
+        <div className="not-found__content">
+          <h1><b>404.</b><br /><small>Page not found</small></h1>
+          <Link to={AppRoute.Main}>Return to main page</Link>
         </div>
       </div>
 
