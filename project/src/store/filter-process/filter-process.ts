@@ -3,7 +3,6 @@ import {NameSpace} from '../../const';
 import {FilterProcess} from '../../types/types';
 import {FiltersList, FILTER_DEFAULT} from '../../const';
 import {FilmMain} from '../../types/types';
-import {fetchFilmsAction} from '../api-actions';
 
 export const FILMS_PER_STEP = 8;
 
@@ -39,13 +38,9 @@ export const filterProcess = createSlice({
       state.filteredFilms = state.films;
       state.renderedFilmsCount = FILMS_PER_STEP;
     },
+    setFilters: (state) => {
+      state.filters = setFilters(state.films);
+    }
   },
-  extraReducers(builder) {
-    builder
-      .addCase(fetchFilmsAction.fulfilled, (state, action) => {
-        state.films = action.payload;
-        state.filteredFilms = action.payload;
-        state.filters = setFilters(state.films);
-      });
-  }
+  extraReducers: {}
 });

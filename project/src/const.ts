@@ -32,7 +32,9 @@ export enum APIRoute {
 export enum NameSpace {
   Film = 'FILM',
   User = 'USER',
-  Filter = 'FILTER'
+  Filter = 'FILTER',
+  Comment = 'COMMENT',
+  Error = 'ERROR'
 }
 
 export const FiltersList: Record<Genre | 'All', string> = {

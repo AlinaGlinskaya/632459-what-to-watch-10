@@ -86,19 +86,9 @@ export type SimilarFilmsProps = {
 export type Genre = 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'KidsAndFamily' | 'Romance' | 'SciFi' | 'Thriller' | 'Detective'
 | 'Adventure' | 'Action' | 'Fantasy';
 
-export type InitialState = {
-  isDataLoading: boolean,
-  error: string | null,
-  promoFilm: FilmMain | null,
-  userData: UserData | null,
-  film: FilmMain | null,
-  similarFilms: FilmMain[],
-  comments: Comment[],
-  isPosting: boolean
-}
-
 export type UserProcess = {
-  authorizationStatus: AuthorizationStatus
+  authorizationStatus: AuthorizationStatus,
+  userData: UserData | null,
 }
 
 export type FilterProcess = {
@@ -107,6 +97,20 @@ export type FilterProcess = {
   filteredFilms: FilmMain[],
   filters: (Genre | 'All')[],
   renderedFilmsCount: number,
+}
+
+export type FilmProcess = {
+  isDataLoading: boolean,
+  films: FilmMain[],
+  filteredFilms: FilmMain[],
+  promoFilm: FilmMain | null,
+  film: FilmMain | null,
+  similarFilms: FilmMain[],
+}
+
+export type CommentProcess = {
+  comments: Comment[],
+  isPosting: boolean
 }
 
 export type State = ReturnType<typeof store.getState>;
