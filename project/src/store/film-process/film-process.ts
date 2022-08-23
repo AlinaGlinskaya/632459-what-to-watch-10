@@ -12,7 +12,8 @@ const initialState: FilmProcess = {
   filteredFilms: [],
   promoFilm: null,
   film: null,
-  similarFilms: []
+  similarFilms: [],
+  isServerAvailable: true
 };
 
 export const filmProcess = createSlice({
@@ -28,6 +29,11 @@ export const filmProcess = createSlice({
         state.films = action.payload;
         state.filteredFilms = action.payload;
         state.isDataLoading = false;
+        state.isServerAvailable = true;
+      })
+      .addCase(fetchFilmsAction.rejected, (state) => {
+        state.isDataLoading = false;
+        state.isServerAvailable = false;
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;

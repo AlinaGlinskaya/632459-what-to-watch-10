@@ -2,21 +2,14 @@ import MainLogo from '../../components/main-logo/main-logo';
 import FooterLogo from '../../components/footer-logo/footer-logo';
 import {useRef, FormEvent} from 'react';
 import {useAppDispatch} from '../../hooks';
-import {useNavigate} from 'react-router-dom';
 import {AuthData} from '../../types/types';
 import {loginAction} from '../../store/api-actions';
-import {AppRoute, AuthorizationStatus} from '../../const';
-import {useAppSelector} from '../../hooks';
-import {useEffect} from 'react';
-import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function SignInScreen(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -32,12 +25,6 @@ function SignInScreen(): JSX.Element {
       });
     }
   };
-
-  useEffect(() => {
-    if (authorizationStatus === AuthorizationStatus.Auth) {
-      navigate(AppRoute.Main);
-    }
-  }, [authorizationStatus, navigate]);
 
   return(
     <div className="user-page">

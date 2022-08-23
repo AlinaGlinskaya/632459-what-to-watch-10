@@ -5,8 +5,6 @@ import {useParams} from 'react-router-dom';
 import {addCommentAction} from '../../store/api-actions';
 import {TypedDispatch} from '../../types/types';
 import {useAppSelector} from '../../hooks';
-import {AppRoute} from '../../const';
-import {useNavigate} from 'react-router-dom';
 import {getIsPosting} from '../../store/comment-process/selectors';
 import {getFilm} from '../../store/film-process/selectors';
 
@@ -27,7 +25,6 @@ function AddReviewForm(): JSX.Element {
   const dispatch = useDispatch<TypedDispatch>();
   const params = useParams();
   const filmId = Number(params.id);
-  const navigate = useNavigate();
   const isPosting = useAppSelector(getIsPosting);
   const film = useAppSelector(getFilm);
 
@@ -49,7 +46,6 @@ function AddReviewForm(): JSX.Element {
   const formSubmitHandle = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(addCommentAction([comment, filmId]));
-    navigate(`${AppRoute.Films}/${filmId}`);
   };
 
   return (

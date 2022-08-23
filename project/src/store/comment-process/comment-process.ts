@@ -20,6 +20,9 @@ export const commentProcess = createSlice({
       .addCase(addCommentAction.pending, (state) => {
         state.isPosting = true;
       })
+      .addCase(addCommentAction.rejected, (state) => {
+        state.isPosting = false;
+      })
       .addCase(addCommentAction.fulfilled, (state) => {
         state.isPosting = false;
       });

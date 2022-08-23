@@ -1,8 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AxiosInstance} from 'axios';
-import {APIRoute} from '../const';
+import {APIRoute, AppRoute} from '../const';
 import {FilmsMainProps, AppDispatch, State, FilmMain, AuthData, UserData, Comment, CommentData} from '../types/types';
 import {saveToken, dropToken} from '../services/token';
+import { redirectToRoute } from './action';
 
 export const fetchFilmsAction = createAsyncThunk<FilmMain[], undefined, {
   dispatch: AppDispatch,
@@ -82,8 +83,9 @@ export const addCommentAction = createAsyncThunk<void, [CommentData, FilmMain['i
   extra: AxiosInstance
 }>(
   'data/addComment',
-  async ([{comment, rating}, filmId], {extra: api}) => {
+  async ([{comment, rating}, filmId], {dispatch, extra: api}) => {
     await api.post<Comment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+    dispatch(redirectToRoute(`${AppRoute.Films}/${filmId}`));
   },
 );
 
@@ -93,9 +95,10 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
   extra: AxiosInstance
 }>(
   'user/login',
-  async ({email, password}, {extra: api}) => {
+  async ({email, password}, {dispatch, extra: api}) => {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
+    dispatch(redirectToRoute(AppRoute.Main));
     return data;
   },
 );
