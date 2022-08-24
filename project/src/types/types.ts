@@ -66,11 +66,6 @@ export type CommentData = {
   rating: number
 }
 
-export type CommentDispatch = {
-  comment: CommentData,
-  id: number,
-}
-
 export type CommentProps = {
   comment: Comment
 }
@@ -94,7 +89,6 @@ export type UserProcess = {
 export type FilterProcess = {
   activeFilter: string,
   films: FilmMain[],
-  filteredFilms: FilmMain[],
   filters: (Genre | 'All')[],
   renderedFilmsCount: number,
 }
@@ -102,7 +96,6 @@ export type FilterProcess = {
 export type FilmProcess = {
   isDataLoading: boolean,
   films: FilmMain[],
-  filteredFilms: FilmMain[],
   promoFilm: FilmMain | null,
   film: FilmMain | null,
   similarFilms: FilmMain[],

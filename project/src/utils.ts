@@ -1,6 +1,10 @@
+import {FilmMain} from './types/types';
+import {FiltersList} from './const';
+import {FILTER_DEFAULT} from './const';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
+
 
 export const getTimeFromMins = (mins?: number) => {
   if (mins) {
@@ -18,5 +22,12 @@ export const getDateCommentFormat = (date: string) => dayjs(date).format('MMMM D
 export const getRatingFormat = (rating: number) => {
   const rate = rating.toFixed(1);
   return rate.replace('.', ',');
+};
+
+export const setFilters = (films: FilmMain[]) => {
+  const genres: (keyof typeof FiltersList)[] = [FILTER_DEFAULT];
+  films.map((item: FilmMain) => genres.push(item.genre));
+  const filters = [...new Set(genres)];
+  return filters;
 };
 

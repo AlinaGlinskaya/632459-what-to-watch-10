@@ -9,7 +9,6 @@ export const FILMS_PER_STEP = 8;
 const initialState: FilmProcess = {
   isDataLoading: false,
   films: [],
-  filteredFilms: [],
   promoFilm: null,
   film: null,
   similarFilms: [],
@@ -27,7 +26,6 @@ export const filmProcess = createSlice({
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.films = action.payload;
-        state.filteredFilms = action.payload;
         state.isDataLoading = false;
         state.isServerAvailable = true;
       })

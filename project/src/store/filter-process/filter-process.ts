@@ -9,7 +9,6 @@ export const FILMS_PER_STEP = 8;
 const initialState: FilterProcess = {
   activeFilter: FILTER_DEFAULT,
   films: [],
-  filteredFilms: [],
   filters: [],
   renderedFilmsCount: FILMS_PER_STEP,
 };
@@ -27,7 +26,6 @@ export const filterProcess = createSlice({
   reducers: {
     changeFilter: (state, action) => {
       state.activeFilter = action.payload;
-      state.filteredFilms = state.films.filter((film) => state.activeFilter === FILTER_DEFAULT ? true : film.genre === state.activeFilter);
       state.renderedFilmsCount = FILMS_PER_STEP;
     },
     renderMoreFilms: (state) => {
@@ -35,7 +33,6 @@ export const filterProcess = createSlice({
     },
     resetFilters: (state) => {
       state.activeFilter = FILTER_DEFAULT;
-      state.filteredFilms = state.films;
       state.renderedFilmsCount = FILMS_PER_STEP;
     },
     initFilters: (state) => {
