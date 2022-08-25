@@ -4,14 +4,19 @@ import {useAppSelector} from '../../hooks';
 import {getFilm} from '../../store/film-process/selectors';
 import useVideoPlayer from '../../hooks/useVideoPlayer';
 import {useRef} from 'react';
+import './player-screen.css';
 
 function PlayerScreen(): JSX.Element {
   const navigate = useNavigate();
   const film = useAppSelector(getFilm);
   const videoElement = useRef(null);
+
   const {
     playerState,
-    togglePlaying
+    handlePlayButtonClick,
+    handleOnTimeUpdate,
+    handleVideoProgress,
+    handleFullScreenButtonClick
   } = useVideoPlayer(videoElement);
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
@@ -19,23 +24,23 @@ function PlayerScreen(): JSX.Element {
 
   return(
     <div className="player">
-      <video src={film.videoLink} ref={videoElement} className="player__video" poster={film.backgroundImage}></video>
+      <video src={film.videoLink} ref={videoElement} className="player__video" onTimeUpdate={handleOnTimeUpdate} poster={film.backgroundImage}></video>
 
       <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
-          <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
+          <div className="player__time range-container">
+            <input className="player__range" type="range" value={playerState.progress} min="0" max="100" onChange={(e) => handleVideoProgress(e)}></input>
+            <progress className="player__progress" value={playerState.progress} max="100"></progress>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{playerState.duration}</div>
         </div>
 
         <div className="player__controls-row">
           {playerState.isPlaying ?
             (
-              <button onClick={togglePlaying} type="button" className="player__play">
+              <button onClick={handlePlayButtonClick} type="button" className="player__play">
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
                 </svg>
@@ -43,7 +48,7 @@ function PlayerScreen(): JSX.Element {
               </button>
             ) :
             (
-              <button onClick={togglePlaying} type="button" className="player__play">
+              <button onClick={handlePlayButtonClick} type="button" className="player__play">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -52,7 +57,7 @@ function PlayerScreen(): JSX.Element {
             )}
           <div className="player__name">{film.name}</div>
 
-          <button type="button" className="player__full-screen">
+          <button onClick={handleFullScreenButtonClick} type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
