@@ -27,8 +27,9 @@ export const getRatingFormat = (rating: number) => {
 export const getVideoDurationFormat = (time?: number | undefined) => {
   if (time) {
     const runtime = dayjs.duration(time);
-    return runtime.hours() !== 0 ? `${runtime.hours()}:${runtime.minutes()}` : `${runtime.minutes()}:${runtime.seconds()}`;
+    return runtime.hours() !== 0 ? `${dayjs.duration(time, 'seconds').format('HH:mm:ss')}` : `${dayjs.duration(time, 'seconds').format('mm:ss')}`;
   }
+  return '';
 };
 
 

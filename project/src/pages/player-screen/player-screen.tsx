@@ -9,14 +9,15 @@ import './player-screen.css';
 function PlayerScreen(): JSX.Element {
   const navigate = useNavigate();
   const film = useAppSelector(getFilm);
-  const videoElement = useRef(null);
+  const videoElement = useRef<HTMLVideoElement | null>(null);
 
   const {
     playerState,
     handlePlayButtonClick,
     handleOnTimeUpdate,
     handleVideoProgress,
-    handleFullScreenButtonClick
+    handleFullScreenButtonClick,
+    setFilmDuration
   } = useVideoPlayer(videoElement);
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
@@ -24,7 +25,19 @@ function PlayerScreen(): JSX.Element {
 
   return(
     <div className="player">
-      <video src={film.videoLink} ref={videoElement} className="player__video" onTimeUpdate={handleOnTimeUpdate} poster={film.backgroundImage}></video>
+      <video
+        src={film.videoLink}
+        ref={videoElement}
+        className="player__video"
+        onLoadedData={() => {
+          if(videoElement.current !== null) {
+            setFilmDuration(videoElement.current.duration);
+          }
+        }}
+        onTimeUpdate={handleOnTimeUpdate}
+        poster={film.backgroundImage}
+      >
+      </video>
 
       <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
 
