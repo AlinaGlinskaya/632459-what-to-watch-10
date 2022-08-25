@@ -1,13 +1,15 @@
 import {useState, useEffect, RefObject} from 'react';
 import {ChangeEvent} from 'react';
-import { getVideoDurationFormat } from '../utils';
+import {getVideoDurationFormat} from '../utils';
 
 const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
-  const filmDuration = getVideoDurationFormat(videoElement.current?.duration);
+
+  const MAX_PROGRESS = 100;
+
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     progress: 0,
-    duration: filmDuration
+    duration: ''
   });
 
   const handlePlayButtonClick = () => {
@@ -18,7 +20,15 @@ const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
   };
 
   const handleFullScreenButtonClick = () => {
-    videoElement.current?.requestFullscreen();
+    videoElement?.current?.requestFullscreen();
+  };
+
+  const setFilmDuration = (duration: number) => {
+    setPlayerState({
+      ...playerState,
+      duration: getVideoDurationFormat(duration),
+    });
+
   };
 
   const handleOnTimeUpdate = () => {
@@ -27,10 +37,19 @@ const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
       return;
     }
 
-    const progress = (videoElement.current.currentTime / videoElement.current.duration) * 100;
+    const progress = (videoElement.current.currentTime / videoElement.current.duration) * MAX_PROGRESS;
+    const progressTime = Number(videoElement.current?.duration) - Number(videoElement.current.currentTime);
+    if (progress < MAX_PROGRESS) {
+      return setPlayerState({
+        ...playerState,
+        progress,
+        duration: getVideoDurationFormat(progressTime),
+      });
+    }
     setPlayerState({
       ...playerState,
-      progress,
+      progress: MAX_PROGRESS,
+      isPlaying: false
     });
   };
 
@@ -42,7 +61,7 @@ const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
 
     const manualChange = Number(evt.target.value);
 
-    videoElement.current.currentTime = (videoElement.current.duration / 100) * manualChange;
+    videoElement.current.currentTime = (videoElement.current.duration / MAX_PROGRESS) * manualChange;
     setPlayerState({
       ...playerState,
       progress: manualChange,
@@ -65,7 +84,8 @@ const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
     handlePlayButtonClick,
     handleOnTimeUpdate,
     handleVideoProgress,
-    handleFullScreenButtonClick
+    handleFullScreenButtonClick,
+    setFilmDuration
   };
 };
 
