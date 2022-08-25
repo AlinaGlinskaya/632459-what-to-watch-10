@@ -1,20 +1,25 @@
-import {FilmsMainProps} from '../../types/types';
-import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useNavigate} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
+import {getFilm} from '../../store/film-process/selectors';
+import useVideoPlayer from '../../hooks/useVideoPlayer';
+import {useRef} from 'react';
 
-function PlayerScreen({films}: FilmsMainProps): JSX.Element {
+function PlayerScreen(): JSX.Element {
   const navigate = useNavigate();
-  const params = useParams().id;
-  const filmId = Number(params?.split('=')[1]);
-  const film = films.find((item) => item.id === filmId);
+  const film = useAppSelector(getFilm);
+  const videoElement = useRef(null);
+  const {
+    playerState,
+    togglePlaying
+  } = useVideoPlayer(videoElement);
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
   }
 
   return(
     <div className="player">
-      <video src="#" className="player__video" poster={film.posterImage}></video>
+      <video src={film.videoLink} ref={videoElement} className="player__video" poster={film.backgroundImage}></video>
 
       <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
 
@@ -28,12 +33,23 @@ function PlayerScreen({films}: FilmsMainProps): JSX.Element {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
+          {playerState.isPlaying ?
+            (
+              <button onClick={togglePlaying} type="button" className="player__play">
+                <svg viewBox="0 0 14 21" width="14" height="21">
+                  <use xlinkHref="#pause"></use>
+                </svg>
+                <span>Pause</span>
+              </button>
+            ) :
+            (
+              <button onClick={togglePlaying} type="button" className="player__play">
+                <svg viewBox="0 0 19 19" width="19" height="19">
+                  <use xlinkHref="#play-s"></use>
+                </svg>
+                <span>Play</span>
+              </button>
+            )}
           <div className="player__name">{film.name}</div>
 
           <button type="button" className="player__full-screen">
@@ -49,3 +65,4 @@ function PlayerScreen({films}: FilmsMainProps): JSX.Element {
 }
 
 export default PlayerScreen;
+
