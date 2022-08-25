@@ -24,6 +24,14 @@ export const getRatingFormat = (rating: number) => {
   return rate.replace('.', ',');
 };
 
+export const getVideoDurationFormat = (time?: number | undefined) => {
+  if (time) {
+    const runtime = dayjs.duration(time);
+    return runtime.hours() !== 0 ? `${runtime.hours()}:${runtime.minutes()}` : `${runtime.minutes()}:${runtime.seconds()}`;
+  }
+};
+
+
 export const setFilters = (films: FilmMain[]) => {
   const genres: (keyof typeof FiltersList)[] = [FILTER_DEFAULT];
   films.map((item: FilmMain) => genres.push(item.genre));
