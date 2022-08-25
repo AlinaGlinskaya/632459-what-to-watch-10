@@ -48,7 +48,7 @@ function App(): JSX.Element {
           element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListScreen films={films} /></PrivateRoute>}
         />
         <Route path={AppRoute.Player}>
-          <Route path=":id" element={<PlayerScreen films={films} />} />
+          <Route path=":id" element={<PlayerScreen />} />
         </Route>
         <Route
           path={AppRoute.SignIn} element={<SignInScreen />}
@@ -62,3 +62,4 @@ function App(): JSX.Element {
 }
 
 export default App;
+
