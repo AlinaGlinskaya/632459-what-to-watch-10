@@ -99,7 +99,8 @@ export type FilmProcess = {
   promoFilm: FilmMain | null,
   film: FilmMain | null,
   similarFilms: FilmMain[],
-  isServerAvailable: boolean
+  isServerAvailable: boolean,
+  favoriteFilms: FilmMain[] | null
 }
 
 export type CommentProcess = {
@@ -125,6 +126,11 @@ export type UserData = {
 
 export type UserBlockProps = {
   avatarUrl?: string,
+}
+
+export type FavoriteData = {
+  filmId: number | undefined,
+  status: number
 }
 
 export type TypedDispatch = ThunkDispatch<ReduxState, AxiosInstance, AnyAction>;

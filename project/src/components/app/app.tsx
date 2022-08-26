@@ -11,15 +11,13 @@ import PrivateRoute from '../private-route/private-route';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import {useAppSelector} from '../../hooks';
 import Spinner from '../../pages/spinner/spinner';
-import {getFilms, getIsDataLoading, getIsServerAvailable} from '../../store/film-process/selectors';
+import {getIsDataLoading, getIsServerAvailable} from '../../store/film-process/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import ServerError from '../server-error/server-error';
 
 function App(): JSX.Element {
-
-  const films = useAppSelector(getFilms);
   const isDataLoading = useAppSelector(getIsDataLoading);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isServerAvailable = useAppSelector(getIsServerAvailable);
@@ -45,7 +43,7 @@ function App(): JSX.Element {
         </Route>
         <Route
           path={AppRoute.MyList}
-          element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListScreen films={films} /></PrivateRoute>}
+          element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListScreen /></PrivateRoute>}
         />
         <Route path={AppRoute.Player}>
           <Route path=":id" element={<PlayerScreen />} />
