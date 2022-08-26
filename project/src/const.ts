@@ -7,6 +7,7 @@ export enum AppRoute {
   Films = '/films',
   AddReview = 'review',
   Player = '/player/',
+  Favorite = '/favorite'
 }
 
 export enum AuthorizationStatus {
@@ -26,7 +27,8 @@ export enum APIRoute {
   Promo = '/promo',
   Login = '/login',
   Logout = '/logout',
-  Comments = '/comments'
+  Comments = '/comments',
+  Favorite = '/favorite'
 }
 
 export enum NameSpace {

@@ -5,12 +5,26 @@ import {useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {getuserData} from '../../store/user-process/selectors';
 import {AppRoute} from '../../const';
-import {getPromoFilm} from '../../store/film-process/selectors';
+import {getFavoriteFilms, getPromoFilm} from '../../store/film-process/selectors';
+import { useDispatch } from 'react-redux';
+import { setFavoriteFilmAction } from '../../store/api-actions';
+import { TypedDispatch } from '../../types/types';
 
 function Promo(): JSX.Element {
   const navigate = useNavigate();
   const userData = useAppSelector(getuserData);
   const promoFilm = useAppSelector(getPromoFilm);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const dispatch = useDispatch<TypedDispatch>();
+
+  const favoriteData = {
+    filmId: promoFilm?.id,
+    status: promoFilm?.isFavorite ? 0 : 1
+  };
+
+  const handleFavoriteButtonClick = () => {
+    dispatch(setFavoriteFilmAction(favoriteData));
+  };
 
   return (
     <section className="film-card">
@@ -46,12 +60,12 @@ function Promo(): JSX.Element {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button" onClick={() => navigate(AppRoute.MyList)}>
+              <button className="btn btn--list film-card__button" type="button" onClick={handleFavoriteButtonClick}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
-                <span className="film-card__count">9</span>
+                <span className="film-card__count">{favoriteFilms === null ? '0' : favoriteFilms.length}</span>
               </button>
             </div>
           </div>
