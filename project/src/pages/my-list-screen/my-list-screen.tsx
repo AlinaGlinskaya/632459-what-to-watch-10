@@ -4,7 +4,7 @@ import MyList from '../../components/my-list/my-list';
 import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 import {useAppSelector} from '../../hooks';
 import {getuserData} from '../../store/user-process/selectors';
-import {getFavoriteFilms} from '../../store/film-process/selectors';
+import {getFavoriteFilms} from '../../store/favorite-process/selectors';
 
 function MyListScreen(): JSX.Element {
 

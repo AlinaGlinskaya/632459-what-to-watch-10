@@ -35,7 +35,8 @@ export enum NameSpace {
   Film = 'FILM',
   User = 'USER',
   Filter = 'FILTER',
-  Comment = 'COMMENT'
+  Comment = 'COMMENT',
+  Favorite= 'FAVORITE'
 }
 
 export const FiltersList: Record<Genre | 'All', string> = {
