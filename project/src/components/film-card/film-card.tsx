@@ -25,7 +25,7 @@ function FilmCard({film}: FilmCardProps) {
         poster={film?.previewImage}
       />
       <h3 className="small-film-card__title">
-        <Link to={`${AppRoute.Films}/${film?.id}`} className="small-film-card__link">{film?.name}</Link>
+        <Link to={`${AppRoute.Films}/${film?.id}`} className="small-film-card__link">{film?.name}{film?.isFavorite ? ' FAVORITE' : ''}</Link>
       </h3>
     </article>
   );
