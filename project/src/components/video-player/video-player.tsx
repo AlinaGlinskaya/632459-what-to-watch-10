@@ -7,6 +7,7 @@ function VideoPlayer({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
     if (videoRef.current === null) {
       return;
     }
@@ -16,7 +17,13 @@ function VideoPlayer({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
       return;
     }
 
-    videoRef.current.load();
+    if (isMounted) {
+      videoRef.current.load();
+    }
+
+    return () => {
+      isMounted = false;
+    };
 
   }, [isPlaying]);
 

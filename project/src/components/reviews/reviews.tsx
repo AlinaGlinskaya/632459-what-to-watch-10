@@ -14,7 +14,15 @@ function Reviews(): JSX.Element {
   const filmId = Number(params?.id);
 
   useEffect(() => {
-    dispatch(fetchCommentsAction(filmId));
+    let isMounted = true;
+    if (isMounted) {
+      dispatch(fetchCommentsAction(filmId));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
   }, [filmId, dispatch]);
 
   const comments = useAppSelector(getComments);

@@ -13,7 +13,15 @@ function MyListScreen(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavoriteFilmsAction());
+    let isMounted = true;
+    if (isMounted) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
   }, [dispatch]);
 
   const userData = useAppSelector(getuserData);

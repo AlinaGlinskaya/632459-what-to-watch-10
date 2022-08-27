@@ -12,8 +12,17 @@ function MainScreen(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(resetFilters());
-    dispatch(fetchPromoFilmAction());
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(resetFilters());
+      dispatch(fetchPromoFilmAction());
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
   }, [dispatch]);
 
   return (

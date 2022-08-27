@@ -30,8 +30,17 @@ function MoviePageScreen(): JSX.Element {
   const filmId = Number(params?.id);
 
   useEffect(() => {
-    dispatch(fetchFilmAction(filmId));
-    dispatch(fetchSimilarFilmsAction(filmId));
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchFilmAction(filmId));
+      dispatch(fetchSimilarFilmsAction(filmId));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
   }, [filmId, dispatch]);
 
   if (!film) {

@@ -16,7 +16,15 @@ function FilmTabs(): JSX.Element {
   const filmId = Number(params?.id);
 
   useEffect(() => {
-    setActiveTab(TabName.Overview);
+    let isMounted = true;
+
+    if (isMounted) {
+      setActiveTab(TabName.Overview);
+    }
+    return () => {
+      isMounted = false;
+    };
+
   }, [filmId]);
 
   const handleTabClick = (evt: MouseEvent<HTMLAnchorElement>) => {
