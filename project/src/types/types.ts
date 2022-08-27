@@ -105,6 +105,7 @@ export type FilmProcess = {
   film: FilmMain | null,
   similarFilms: FilmMain[],
   isServerAvailable: boolean,
+  isFilmLoading: boolean
 }
 
 export type CommentProcess = {

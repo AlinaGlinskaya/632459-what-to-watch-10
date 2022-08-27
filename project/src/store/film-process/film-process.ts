@@ -12,6 +12,7 @@ const initialState: FilmProcess = {
   film: null,
   similarFilms: [],
   isServerAvailable: true,
+  isFilmLoading: false
 };
 
 export const filmProcess = createSlice({
@@ -35,8 +36,15 @@ export const filmProcess = createSlice({
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
       })
+      .addCase(fetchFilmAction.pending, (state) => {
+        state.isFilmLoading = true;
+      })
       .addCase(fetchFilmAction.fulfilled, (state, action) => {
         state.film = action.payload;
+        state.isFilmLoading = false;
+      })
+      .addCase(fetchFilmAction.rejected, (state) => {
+        state.isFilmLoading = false;
       })
       .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
