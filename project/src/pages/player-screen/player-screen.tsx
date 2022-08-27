@@ -1,15 +1,28 @@
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useNavigate} from 'react-router-dom';
-import {useAppSelector} from '../../hooks';
-import {getFilm} from '../../store/film-process/selectors';
 import useVideoPlayer from '../../hooks/useVideoPlayer';
 import {useRef} from 'react';
 import './player-screen.css';
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {useAppDispatch } from '../../hooks';
+import {fetchFilmAction} from '../../store/api-actions';
+import {useAppSelector} from '../../hooks';
+import {getFilm} from '../../store/film-process/selectors';
 
 function PlayerScreen(): JSX.Element {
   const navigate = useNavigate();
-  const film = useAppSelector(getFilm);
+  const dispatch = useAppDispatch();
   const videoElement = useRef<HTMLVideoElement | null>(null);
+
+  const params = useParams();
+  const filmId = Number(params?.id);
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(filmId));
+  }, [filmId, dispatch]);
+
+  const film = useAppSelector(getFilm);
 
   const {
     playerState,

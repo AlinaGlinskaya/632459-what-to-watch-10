@@ -37,7 +37,10 @@ export const setFavoriteFilmAction = createAsyncThunk<FilmMain, FavoriteData, {
   'film/setFavoriteFilm',
   async ({filmId, status}, {dispatch, extra: api}) => {
     const {data} = await api.post<FilmMain>(`${APIRoute.Favorite}/${filmId}/${status}`);
-    dispatch(redirectToRoute(AppRoute.MyList));
+    if (filmId) {
+      dispatch(fetchFilmAction(filmId));
+    }
+    dispatch(fetchFavoriteFilmsAction());
     return data;
   },
 );

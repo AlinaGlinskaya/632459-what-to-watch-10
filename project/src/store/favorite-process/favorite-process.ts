@@ -1,21 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {fetchFavoriteFilmsAction, setFavoriteFilmAction} from '../api-actions';
-import {FavoriteProcess, FilmMain} from '../../types/types';
+import {FavoriteProcess} from '../../types/types';
 
 const initialState: FavoriteProcess = {
   favoriteFilms: [],
-  updatedFilm: null,
   films: []
-};
-
-const setUpdatedFilm = (films: FilmMain[], updatedFilm: FilmMain) => {
-  const filmToUpdate = films.find((film: FilmMain) => film.id === updatedFilm?.id);
-  if (filmToUpdate) {
-    const filmIndex = films.indexOf(filmToUpdate);
-    films[filmIndex] = updatedFilm;
-  }
-  return films;
 };
 
 export const favoriteProcess = createSlice({
@@ -28,8 +18,21 @@ export const favoriteProcess = createSlice({
         state.favoriteFilms = action.payload;
       })
       .addCase(setFavoriteFilmAction.fulfilled, (state, action) => {
-        state.updatedFilm = action.payload;
-        state.films = setUpdatedFilm(state.films, state.updatedFilm);
+        if(!action.payload.isFavorite){
+          state.favoriteFilms = (state.favoriteFilms).filter((film)=>film.id !== action.payload.id);
+        }
+        else{
+          const favoriteFilmIndex = (state.favoriteFilms).findIndex((film) => film.id !== action.payload.id);
+          const newFavoriteFilms = (state.favoriteFilms);
+
+          if(favoriteFilmIndex >= 0) {
+            newFavoriteFilms[favoriteFilmIndex] = action.payload;
+          }
+          else{
+            newFavoriteFilms.push(action.payload);
+          }
+          state.favoriteFilms = newFavoriteFilms;
+        }
       });
   }
 });

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {FilmProcess} from '../../types/types';
-import {fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction} from '../api-actions';
+import {fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction, setFavoriteFilmAction} from '../api-actions';
 
 export const FILMS_PER_STEP = 8;
 
@@ -40,6 +40,14 @@ export const filmProcess = createSlice({
       })
       .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
+      })
+      .addCase(setFavoriteFilmAction.fulfilled,(state,action)=>{
+        if(state.film?.id === action.payload.id) {
+          state.film = action.payload;
+        }
+        if(state.promoFilm?.id === action.payload.id) {
+          state.promoFilm = action.payload;
+        }
       });
   }
 });
