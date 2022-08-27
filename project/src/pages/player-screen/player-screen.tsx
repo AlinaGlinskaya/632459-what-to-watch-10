@@ -20,7 +20,16 @@ function PlayerScreen(): JSX.Element {
   const filmId = Number(params?.id);
 
   useEffect(() => {
-    dispatch(fetchFilmAction(filmId));
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchFilmAction(filmId));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
   }, [filmId, dispatch]);
 
   const film = useAppSelector(getFilm);

@@ -70,13 +70,23 @@ const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
 
   useEffect(() => {
 
+    let isMounted = true;
+
     if (videoElement.current === null) {
       return;
     }
 
-    playerState.isPlaying
-      ? videoElement.current.play()
-      : videoElement.current.pause();
+    if (isMounted) {
+      playerState.isPlaying
+        ? videoElement.current.play()
+        : videoElement.current.pause();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
+
   }, [playerState.isPlaying, videoElement]);
 
   return {
