@@ -5,8 +5,16 @@ import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 import {useAppSelector} from '../../hooks';
 import {getuserData} from '../../store/user-process/selectors';
 import {getFavoriteFilms} from '../../store/favorite-process/selectors';
+import {fetchFavoriteFilmsAction} from '../../store/api-actions';
+import {useEffect} from 'react';
+import {useAppDispatch} from '../../hooks';
 
 function MyListScreen(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteFilmsAction());
+  }, [dispatch]);
 
   const userData = useAppSelector(getuserData);
   const favoriteFilms = useAppSelector(getFavoriteFilms);
