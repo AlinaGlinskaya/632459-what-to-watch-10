@@ -22,6 +22,13 @@ export enum TabName {
   Reviews = 'reviews'
 }
 
+export enum FilmLevel {
+  Bad = 3,
+  Normal = 5,
+  Good = 8,
+  Awesome = 10
+}
+
 export enum APIRoute {
   Films = '/films',
   Promo = '/promo',
