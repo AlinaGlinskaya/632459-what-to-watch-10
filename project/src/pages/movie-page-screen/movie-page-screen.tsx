@@ -16,6 +16,7 @@ import UserBlockAnonim from '../../components/user-block-anonim/user-block-anoni
 import UserBlockAuth from '../../components/user-block-auth/user-block-auth';
 import {getFilm, getSimilarFilms} from '../../store/film-process/selectors';
 import {getAuthorizationStatus, getuserData} from '../../store/user-process/selectors';
+import {setFavoriteFilmAction} from '../../store/api-actions';
 
 function MoviePageScreen(): JSX.Element {
   const film = useAppSelector(getFilm);
@@ -26,6 +27,15 @@ function MoviePageScreen(): JSX.Element {
   const navigate = useNavigate();
   const params = useParams();
   const filmId = Number(params?.id);
+
+  const favoriteData = {
+    filmId: film?.id,
+    status: film?.isFavorite ? 0 : 1
+  };
+
+  const handleFavoriteButtonClick = () => {
+    dispatch(setFavoriteFilmAction(favoriteData));
+  };
 
   useEffect(() => {
     dispatch(fetchFilmAction(filmId));
@@ -68,7 +78,7 @@ function MoviePageScreen(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button" onClick={() => navigate(AppRoute.MyList)}>
+                <button className="btn btn--list film-card__button" type="button" onClick={handleFavoriteButtonClick}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>

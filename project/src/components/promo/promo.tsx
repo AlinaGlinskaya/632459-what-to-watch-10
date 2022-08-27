@@ -5,10 +5,11 @@ import {useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {getuserData} from '../../store/user-process/selectors';
 import {AppRoute} from '../../const';
-import {getFavoriteFilms, getPromoFilm} from '../../store/film-process/selectors';
-import { useDispatch } from 'react-redux';
-import { setFavoriteFilmAction } from '../../store/api-actions';
-import { TypedDispatch } from '../../types/types';
+import {getPromoFilm} from '../../store/film-process/selectors';
+import {useDispatch} from 'react-redux';
+import {setFavoriteFilmAction} from '../../store/api-actions';
+import {TypedDispatch} from '../../types/types';
+import {getFavoriteFilms} from '../../store/favorite-process/selectors';
 
 function Promo(): JSX.Element {
   const navigate = useNavigate();

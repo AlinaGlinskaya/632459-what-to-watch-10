@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {FilmProcess} from '../../types/types';
-import {fetchFilmAction, fetchFilmsAction, fetchFavoriteFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction} from '../api-actions';
+import {fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFilmsAction} from '../api-actions';
 
 export const FILMS_PER_STEP = 8;
 
@@ -12,7 +12,6 @@ const initialState: FilmProcess = {
   film: null,
   similarFilms: [],
   isServerAvailable: true,
-  favoriteFilms: []
 };
 
 export const filmProcess = createSlice({
@@ -32,9 +31,6 @@ export const filmProcess = createSlice({
       .addCase(fetchFilmsAction.rejected, (state) => {
         state.isDataLoading = false;
         state.isServerAvailable = false;
-      })
-      .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {
-        state.favoriteFilms = action.payload;
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;

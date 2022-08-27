@@ -23,8 +23,8 @@ export const fetchFavoriteFilmsAction = createAsyncThunk<FilmMain[], undefined, 
   extra: AxiosInstance
 }>(
   'film/fetchFavoriteFilms',
-  async (_arg,{extra: api}) => {
-    const {data} = await api.get<FilmsMainProps['films']>(APIRoute.Films);
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<FilmMain[]>(APIRoute.Favorite);
     return data;
   },
 );

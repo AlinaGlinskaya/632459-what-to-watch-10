@@ -93,6 +93,11 @@ export type FilterProcess = {
   renderedFilmsCount: number,
 }
 
+export type FavoriteProcess = {
+  favoriteFilms: FilmMain[] | null,
+  film: FilmMain | null
+}
+
 export type FilmProcess = {
   isDataLoading: boolean,
   films: FilmMain[],
@@ -100,7 +105,6 @@ export type FilmProcess = {
   film: FilmMain | null,
   similarFilms: FilmMain[],
   isServerAvailable: boolean,
-  favoriteFilms: FilmMain[] | null
 }
 
 export type CommentProcess = {

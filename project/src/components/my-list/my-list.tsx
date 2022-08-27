@@ -1,6 +1,6 @@
 import FilmCard from '../film-card/film-card';
 import {useAppSelector} from '../../hooks';
-import {getFavoriteFilms} from '../../store/film-process/selectors';
+import {getFavoriteFilms} from '../../store/favorite-process/selectors';
 
 function MyList() {
 
