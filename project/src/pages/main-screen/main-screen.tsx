@@ -5,6 +5,7 @@ import {resetFilters} from '../../store/filter-process/filter-process';
 import {useAppDispatch} from '../../hooks';
 import Promo from '../../components/promo/promo';
 import FilmsWithFilters from '../../components/films-with-filters/films-with-filters';
+import {fetchPromoFilmAction} from '../../store/api-actions';
 
 function MainScreen(): JSX.Element {
 
@@ -12,6 +13,7 @@ function MainScreen(): JSX.Element {
 
   useEffect(() => {
     dispatch(resetFilters());
+    dispatch(fetchPromoFilmAction());
   }, [dispatch]);
 
   return (

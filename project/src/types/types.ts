@@ -95,7 +95,8 @@ export type FilterProcess = {
 
 export type FavoriteProcess = {
   favoriteFilms: FilmMain[] | null,
-  film: FilmMain | null
+  updatedFilm: FilmMain | null,
+  films: FilmMain[]
 }
 
 export type FilmProcess = {
