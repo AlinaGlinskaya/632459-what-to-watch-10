@@ -8,7 +8,8 @@ import {useParams} from 'react-router-dom';
 import {useAppDispatch } from '../../hooks';
 import {fetchFilmAction} from '../../store/api-actions';
 import {useAppSelector} from '../../hooks';
-import {getFilm} from '../../store/film-process/selectors';
+import {getFilm, getIsFilmLoading} from '../../store/film-process/selectors';
+import Spinner from '../spinner/spinner';
 
 function PlayerScreen(): JSX.Element {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function PlayerScreen(): JSX.Element {
   }, [filmId, dispatch]);
 
   const film = useAppSelector(getFilm);
+  const isFilmLoading = useAppSelector(getIsFilmLoading);
 
   const {
     playerState,
@@ -32,8 +34,13 @@ function PlayerScreen(): JSX.Element {
     handleFullScreenButtonClick,
     setFilmDuration
   } = useVideoPlayer(videoElement);
+
   if (!film) {
     return <NotFoundScreen></NotFoundScreen>;
+  }
+
+  if (isFilmLoading) {
+    return <Spinner />;
   }
 
   return(
