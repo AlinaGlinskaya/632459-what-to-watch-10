@@ -6,7 +6,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useNavigate} from 'react-router-dom';
-import FilmTabs from '../../components/tabs/tabs';
+import Tabs from '../../components/tabs/tabs';
 import SimilarFilmsList from '../../components/similar-films-list/similar-films-list';
 import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {useAppSelector} from '../../hooks';
@@ -94,7 +94,7 @@ function MoviePageScreen(): JSX.Element {
               <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
             </div>
 
-            {<FilmTabs />}
+            {<Tabs />}
 
           </div>
         </div>

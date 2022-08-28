@@ -8,9 +8,7 @@ import {useAppSelector} from '../../hooks';
 import {getIsPosting} from '../../store/comment-process/selectors';
 import {getFilm} from '../../store/film-process/selectors';
 import './add-review-form.css';
-
-const MIN_REVIEW_LENGTH = 50;
-const MAX_REVIEW_LENGTH = 400;
+import { ReviewLimit } from '../../const';
 
 function AddReviewForm(): JSX.Element {
 
@@ -32,7 +30,7 @@ function AddReviewForm(): JSX.Element {
   const formChangeHandle = (evt: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
-    if (formData['review-text'].length >= MIN_REVIEW_LENGTH && formData['review-text'].length <= MAX_REVIEW_LENGTH && formData['rating'].length > 0) {
+    if (formData['review-text'].length >= ReviewLimit.MinLength && formData['review-text'].length <= ReviewLimit.MaxLength && formData['rating'].length > 0) {
       setFormFilled({...form, filled: true});
     } else {
       setFormFilled({...form, filled: false});
@@ -92,8 +90,8 @@ function AddReviewForm(): JSX.Element {
           id="review-text"
           onChange={formChangeHandle}
           placeholder="Review text"
-          minLength={MIN_REVIEW_LENGTH}
-          maxLength={MAX_REVIEW_LENGTH}
+          minLength={ReviewLimit.MinLength}
+          maxLength={ReviewLimit.MaxLength}
         >
         </textarea>
         <div className="add-review__submit">

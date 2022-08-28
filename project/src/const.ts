@@ -65,4 +65,9 @@ export const FiltersList: Record<Genre | 'All', string> = {
 
 export const FILTER_DEFAULT = 'All';
 
+export enum ReviewLimit {
+  MinLength = 50,
+  MaxLength = 400,
+}
+
 

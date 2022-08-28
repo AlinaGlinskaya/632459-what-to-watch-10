@@ -9,7 +9,7 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {getFilm} from '../../store/film-process/selectors';
 
-function FilmTabs(): JSX.Element {
+function Tabs(): JSX.Element {
   const [activeTab, setActiveTab] = useState('overview');
   const film = useAppSelector(getFilm);
   const params = useParams();
@@ -67,4 +67,4 @@ function FilmTabs(): JSX.Element {
   );
 }
 
-export default FilmTabs;
+export default Tabs;
