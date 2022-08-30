@@ -49,7 +49,7 @@ export const filmProcess = createSlice({
       .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
       })
-      .addCase(setFavoriteFilmAction.fulfilled,(state,action)=>{
+      .addCase(setFavoriteFilmAction.fulfilled, (state, action)=>{
         if(state.film?.id === action.payload.id) {
           state.film = action.payload;
         }
