@@ -32,11 +32,15 @@ export const getVideoDurationFormat = (time?: number | undefined) => {
   return '';
 };
 
-
 export const setFilters = (films: FilmMain[]) => {
   const genres: (keyof typeof FiltersList)[] = [FILTER_DEFAULT];
   films.map((item: FilmMain) => genres.push(item.genre));
   const filters = [...new Set(genres)];
   return filters;
+};
+
+export const generateRandomInteger = (min: number, max: number) => {
+  const rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
 };
 

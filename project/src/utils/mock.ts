@@ -1,12 +1,10 @@
 import {Comment, FilmMain, UserData} from '../types/types';
 import {image, name, lorem, date, internet, random} from 'faker';
-
-const generateRandomInteger = (min: number, max: number) => {
-  const rand = min + Math.random() * (max + 1 - min);
-  return Math.floor(rand);
-};
+import {generateRandomInteger} from '../utils';
 
 const colors = ['#ffffff', '#dedede', '#334482', '#090b16'];
+
+const genres = ['Comedy', 'Crime', 'Documentary', 'Drama', 'Horror', 'KidsAndFamily', 'Romance', 'SciFi', 'Thriller', 'Detective'];
 
 const randomDate = (start: Date, end: Date): number => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).getFullYear();
 
@@ -27,7 +25,7 @@ export const makeFakeFilm = (): FilmMain => ({
   director: makeFakeFullname(),
   starring: Array.from({length: generateRandomInteger(1, 7)}, () => makeFakeFullname()),
   runTime: generateRandomInteger(1, 180),
-  genre: lorem.word(),
+  genre: genres[generateRandomInteger(0, genres.length)],
   released: randomDate(new Date(1980, 0, 1), new Date()),
   isFavorite: Boolean(generateRandomInteger(0, 1))
 } as FilmMain);
