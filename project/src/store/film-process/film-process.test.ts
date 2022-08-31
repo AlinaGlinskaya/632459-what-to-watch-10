@@ -7,6 +7,7 @@ const films = Array.from({length: 5}, () => makeFakeFilm());
 const film = makeFakeFilm();
 const promoFilm = makeFakeFilm();
 const filmFavoriteChanged = {...film, isFavorite: !film.isFavorite};
+const promoFilmFavoriteChanged = {...promoFilm, isFavorite: !promoFilm.isFavorite};
 
 describe('Reducer: filmProcess', () => {
   let state: FilmProcess;
@@ -158,7 +159,7 @@ describe('Reducer: filmProcess', () => {
       const stateWithLoadedFilm = {
         isDataLoading: false,
         films: [],
-        promoFilm: promoFilm,
+        promoFilm: null,
         film: film,
         similarFilms: [],
         isServerAvailable: true,
@@ -168,8 +169,30 @@ describe('Reducer: filmProcess', () => {
         .toEqual({
           isDataLoading: false,
           films: [],
-          promoFilm: promoFilm || filmFavoriteChanged,
+          promoFilm: null,
           film: filmFavoriteChanged,
+          similarFilms: [],
+          isServerAvailable: true,
+          isFilmLoading: false
+        });
+    });
+
+    it('should update promoFilm by changing favorite status', () => {
+      const stateWithLoadedFilm = {
+        isDataLoading: false,
+        films: [],
+        promoFilm: promoFilm,
+        film: null,
+        similarFilms: [],
+        isServerAvailable: true,
+        isFilmLoading: false
+      };
+      expect(filmProcess.reducer(stateWithLoadedFilm, {type: setFavoriteFilmAction.fulfilled.type, payload: promoFilmFavoriteChanged}))
+        .toEqual({
+          isDataLoading: false,
+          films: [],
+          promoFilm: promoFilmFavoriteChanged,
+          film: null,
           similarFilms: [],
           isServerAvailable: true,
           isFilmLoading: false

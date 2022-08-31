@@ -18,17 +18,17 @@ export const favoriteProcess = createSlice({
         state.favoriteFilms = action.payload;
       })
       .addCase(setFavoriteFilmAction.fulfilled, (state, action) => {
-        if(!action.payload.isFavorite){
-          state.favoriteFilms = (state.favoriteFilms).filter((film)=>film.id !== action.payload.id);
+        if (!action.payload.isFavorite) {
+          state.favoriteFilms = (state.favoriteFilms).filter((film) => film.id !== action.payload.id);
         }
-        else{
+        else {
           const favoriteFilmIndex = (state.favoriteFilms).findIndex((film) => film.id !== action.payload.id);
           const newFavoriteFilms = (state.favoriteFilms);
 
-          if(favoriteFilmIndex >= 0) {
+          if (favoriteFilmIndex >= 0) {
             newFavoriteFilms[favoriteFilmIndex] = action.payload;
           }
-          else{
+          else {
             newFavoriteFilms.push(action.payload);
           }
           state.favoriteFilms = newFavoriteFilms;

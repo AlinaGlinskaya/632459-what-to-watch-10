@@ -3,7 +3,7 @@ import {AxiosInstance} from 'axios';
 import {APIRoute, AppRoute} from '../const';
 import {FilmsMainProps, AppDispatch, State, FilmMain, AuthData, UserData, Comment, CommentData, FavoriteData} from '../types/types';
 import {saveToken, dropToken} from '../services/token';
-import { redirectToRoute } from './action';
+import {redirectToRoute} from './action';
 
 export const fetchFilmsAction = createAsyncThunk<FilmMain[], undefined, {
   dispatch: AppDispatch,
