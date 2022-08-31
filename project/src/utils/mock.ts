@@ -1,4 +1,4 @@
-import {Comment, FilmMain, UserData} from '../types/types';
+import {Comment, CommentData, FilmMain, UserData} from '../types/types';
 import {image, name, lorem, date, internet, random} from 'faker';
 import {generateRandomInteger} from '../utils';
 
@@ -48,3 +48,8 @@ export const makeFakeUser = (): UserData => ({
   name: makeFakeFullname(),
   token: random.alphaNumeric(10),
 } as UserData);
+
+export const makeFakeCommentData = (): CommentData => ({
+  comment:  lorem.paragraph(),
+  rating: Number(`${generateRandomInteger(0, 9)}.${generateRandomInteger(0, 9)}`),
+} as CommentData);

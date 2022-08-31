@@ -3,7 +3,7 @@ import {makeFakeComment} from '../../utils/mock';
 import {addCommentAction, fetchCommentsAction} from '../api-actions';
 import {commentProcess} from './comment-process';
 
-const comments = Array.from({length: 5}, makeFakeComment);
+const mockComments = Array.from({length: 5}, makeFakeComment);
 
 describe('Reducer: commentProcess', () => {
   let state: CommentProcess;
@@ -19,8 +19,8 @@ describe('Reducer: commentProcess', () => {
 
   describe('fetchCommentsAction test', () => {
     it('should update comments by load comments', () => {
-      expect(commentProcess.reducer(state, {type: fetchCommentsAction.fulfilled.type, payload: comments}))
-        .toEqual({comments, isPosting: false});
+      expect(commentProcess.reducer(state, {type: fetchCommentsAction.fulfilled.type, payload: mockComments}))
+        .toEqual({comments: mockComments, isPosting: false});
     });
   });
 

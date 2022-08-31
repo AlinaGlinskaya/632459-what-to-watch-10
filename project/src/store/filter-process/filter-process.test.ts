@@ -4,9 +4,9 @@ import {makeFakeFilm} from '../../utils/mock';
 import {changeFilter, FILMS_PER_STEP, filterProcess, renderMoreFilms, resetFilters, initFilters} from './filter-process';
 import {generateRandomInteger} from '../../utils';
 
-const films = Array.from({length: 5}, () => makeFakeFilm());
+const mockFilms = Array.from({length: 15}, () => makeFakeFilm());
 
-const filters = setFilters(films);
+const filters = setFilters(mockFilms);
 const activeFilter = filters[generateRandomInteger(0, (filters.length - 1))];
 
 describe('Reducer: filterProcess', () => {
@@ -17,26 +17,26 @@ describe('Reducer: filterProcess', () => {
   });
 
   it('should change active filter and reset films count', () => {
-    const state = {activeFilter: activeFilter, renderedFilmsCount: generateRandomInteger(0, 50), films: films, filters: filters};
+    const state = {activeFilter: activeFilter, renderedFilmsCount: generateRandomInteger(0, 50), films: mockFilms, filters: filters};
     expect(filterProcess.reducer(state, changeFilter(activeFilter)))
-      .toEqual({activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: films, filters: filters});
+      .toEqual({activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: mockFilms, filters: filters});
   });
 
   it('should increase rendered films count on constant value', () => {
-    const state = {activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: films, filters: filters};
+    const state = {activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: mockFilms, filters: filters};
     expect(filterProcess.reducer(state, renderMoreFilms()))
-      .toEqual({renderedFilmsCount: FILMS_PER_STEP + FILMS_PER_STEP, films: films, filters: filters, activeFilter: activeFilter});
+      .toEqual({renderedFilmsCount: FILMS_PER_STEP + FILMS_PER_STEP, films: mockFilms, filters: filters, activeFilter: activeFilter});
   });
 
   it('should set default filter and reset films count', () => {
-    const state = {activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: films, filters: filters};
+    const state = {activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: mockFilms, filters: filters};
     expect(filterProcess.reducer(state, resetFilters()))
-      .toEqual({activeFilter: FILTER_DEFAULT, renderedFilmsCount: FILMS_PER_STEP, films: films, filters: filters});
+      .toEqual({activeFilter: FILTER_DEFAULT, renderedFilmsCount: FILMS_PER_STEP, films: mockFilms, filters: filters});
   });
 
   it('should set filters based on films genres', () => {
-    const state = {activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: films, filters: filters};
+    const state = {activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: mockFilms, filters: filters};
     expect(filterProcess.reducer(state, initFilters()))
-      .toEqual({filters: setFilters(films), activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: films});
+      .toEqual({filters: setFilters(mockFilms), activeFilter: activeFilter, renderedFilmsCount: FILMS_PER_STEP, films: mockFilms});
   });
 });

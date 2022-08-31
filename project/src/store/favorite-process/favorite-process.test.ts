@@ -4,17 +4,17 @@ import {makeFakeFilm} from '../../utils/mock';
 import {fetchFavoriteFilmsAction, setFavoriteFilmAction} from '../api-actions';
 import {generateRandomInteger} from '../../utils';
 
-const favoriteFilms = Array.from({length: 17}, () => makeFakeFilm());
-const film = favoriteFilms[generateRandomInteger(0, (favoriteFilms.length - 1))];
+const mockFavoriteFilms = Array.from({length: 17}, () => makeFakeFilm());
+const film = mockFavoriteFilms[generateRandomInteger(0, (mockFavoriteFilms.length - 1))];
 const updatedFilm = {...film, isFavorite: !film.isFavorite};
 
 const getUpdatedFavorites = () => {
   if (!updatedFilm.isFavorite) {
-    const updatedFavorites = favoriteFilms.filter((item) => item.id !== updatedFilm.id);
+    const updatedFavorites = mockFavoriteFilms.filter((item) => item.id !== updatedFilm.id);
     return updatedFavorites;
   }
-  const favoriteFilmIndex = favoriteFilms.findIndex((item) => item.id !== updatedFilm.id);
-  const newFavoriteFilms = [...favoriteFilms];
+  const favoriteFilmIndex = mockFavoriteFilms.findIndex((item) => item.id !== updatedFilm.id);
+  const newFavoriteFilms = [...mockFavoriteFilms];
 
   if (favoriteFilmIndex >= 0) {
     newFavoriteFilms[favoriteFilmIndex] = updatedFilm;
@@ -39,12 +39,12 @@ describe('Reducer: favoriteProcess', () => {
   });
 
   it('should update favorite films by load favorite', () => {
-    expect(favoriteProcess.reducer(state, {type: fetchFavoriteFilmsAction.fulfilled.type, payload: favoriteFilms}))
-      .toEqual({films: [], favoriteFilms: favoriteFilms});
+    expect(favoriteProcess.reducer(state, {type: fetchFavoriteFilmsAction.fulfilled.type, payload: mockFavoriteFilms}))
+      .toEqual({films: [], favoriteFilms: mockFavoriteFilms});
   });
 
   it('should update favorite films by changing film favorite status', () => {
-    const stateWithLoadedFavorites = {films: [], favoriteFilms: favoriteFilms};
+    const stateWithLoadedFavorites = {films: [], favoriteFilms: mockFavoriteFilms};
     expect(favoriteProcess.reducer(stateWithLoadedFavorites, {type: setFavoriteFilmAction.fulfilled.type, payload: updatedFilm}))
       .toEqual({films: [], favoriteFilms: getUpdatedFavorites()});
   });

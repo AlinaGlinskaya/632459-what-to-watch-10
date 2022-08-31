@@ -3,11 +3,11 @@ import {fetchFilmsAction, fetchFilmAction, fetchPromoFilmAction, fetchSimilarFil
 import {filmProcess} from './film-process';
 import {makeFakeFilm} from '../../utils/mock';
 
-const films = Array.from({length: 5}, () => makeFakeFilm());
-const film = makeFakeFilm();
-const promoFilm = makeFakeFilm();
-const filmFavoriteChanged = {...film, isFavorite: !film.isFavorite};
-const promoFilmFavoriteChanged = {...promoFilm, isFavorite: !promoFilm.isFavorite};
+const mockFilms = Array.from({length: 5}, () => makeFakeFilm());
+const mockFilm = makeFakeFilm();
+const mockPromoFilm = makeFakeFilm();
+const filmFavoriteChanged = {...mockFilm, isFavorite: !mockFilm.isFavorite};
+const promoFilmFavoriteChanged = {...mockPromoFilm, isFavorite: !mockPromoFilm.isFavorite};
 
 describe('Reducer: filmProcess', () => {
   let state: FilmProcess;
@@ -53,10 +53,10 @@ describe('Reducer: filmProcess', () => {
     });
 
     it('should update films by load films, set "isDataLoading": false and "isServerAvailable": true', () => {
-      expect(filmProcess.reducer(state, {type: fetchFilmsAction.fulfilled.type, payload: films}))
+      expect(filmProcess.reducer(state, {type: fetchFilmsAction.fulfilled.type, payload: mockFilms}))
         .toEqual({
           isDataLoading: false,
-          films: films,
+          films: mockFilms,
           promoFilm: null,
           film: null,
           similarFilms: [],
@@ -95,12 +95,12 @@ describe('Reducer: filmProcess', () => {
     });
 
     it('should update film by load film, set "isFilmLoading": false', () => {
-      expect(filmProcess.reducer(state, {type: fetchFilmAction.fulfilled.type, payload: film}))
+      expect(filmProcess.reducer(state, {type: fetchFilmAction.fulfilled.type, payload: mockFilm}))
         .toEqual({
           isDataLoading: false,
           films: [],
           promoFilm: null,
-          film: film,
+          film: mockFilm,
           similarFilms: [],
           isServerAvailable: true,
           isFilmLoading: false
@@ -124,11 +124,11 @@ describe('Reducer: filmProcess', () => {
   describe('fetchPromoFilmAction test', () => {
 
     it('should update promoFilm by loading promoFilm', () => {
-      expect(filmProcess.reducer(state, {type: fetchPromoFilmAction.fulfilled.type, payload: promoFilm}))
+      expect(filmProcess.reducer(state, {type: fetchPromoFilmAction.fulfilled.type, payload: mockPromoFilm}))
         .toEqual({
           isDataLoading: false,
           films: [],
-          promoFilm: promoFilm,
+          promoFilm: mockPromoFilm,
           film: null,
           similarFilms: [],
           isServerAvailable: true,
@@ -140,13 +140,13 @@ describe('Reducer: filmProcess', () => {
   describe('fetchSimilarFilmsAction test', () => {
 
     it('should update similarFilms by loading similarFilms', () => {
-      expect(filmProcess.reducer(state, {type: fetchSimilarFilmsAction.fulfilled.type, payload: films}))
+      expect(filmProcess.reducer(state, {type: fetchSimilarFilmsAction.fulfilled.type, payload: mockFilms}))
         .toEqual({
           isDataLoading: false,
           films: [],
           promoFilm: null,
           film: null,
-          similarFilms: films,
+          similarFilms: mockFilms,
           isServerAvailable: true,
           isFilmLoading: false
         });
@@ -160,7 +160,7 @@ describe('Reducer: filmProcess', () => {
         isDataLoading: false,
         films: [],
         promoFilm: null,
-        film: film,
+        film: mockFilm,
         similarFilms: [],
         isServerAvailable: true,
         isFilmLoading: false
@@ -181,7 +181,7 @@ describe('Reducer: filmProcess', () => {
       const stateWithLoadedFilm = {
         isDataLoading: false,
         films: [],
-        promoFilm: promoFilm,
+        promoFilm: mockPromoFilm,
         film: null,
         similarFilms: [],
         isServerAvailable: true,

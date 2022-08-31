@@ -4,7 +4,7 @@ import {checkAuthAction, loginAction, logoutAction} from '../api-actions';
 import {userProcess} from './user-process';
 import {makeFakeUser} from '../../utils/mock';
 
-const user = makeFakeUser();
+const mockUser = makeFakeUser();
 
 describe('Reducer: userProcess', () => {
   let state: UserProcess;
@@ -21,8 +21,8 @@ describe('Reducer: userProcess', () => {
 
   describe('CheckAuthAction test', () => {
     it('should update authorizationStatus to "AUTH" if checkAuthAction fulfilled', () => {
-      expect(userProcess.reducer(state, {type: checkAuthAction.fulfilled.type, payload: user}))
-        .toEqual({authorizationStatus: AuthorizationStatus.Auth, userData: user});
+      expect(userProcess.reducer(state, {type: checkAuthAction.fulfilled.type, payload: mockUser}))
+        .toEqual({authorizationStatus: AuthorizationStatus.Auth, userData: mockUser});
     });
 
     it('should update authorizationStatus to "NO_AUTH" if checkAuthAction rejected', () => {
@@ -33,8 +33,8 @@ describe('Reducer: userProcess', () => {
 
   describe('loginAction test', () => {
     it('should update authorizationStatus to "AUTH" if loginAction fulfilled', () => {
-      expect(userProcess.reducer(state, {type: loginAction.fulfilled.type, payload: user}))
-        .toEqual({authorizationStatus: AuthorizationStatus.Auth, userData: user});
+      expect(userProcess.reducer(state, {type: loginAction.fulfilled.type, payload: mockUser}))
+        .toEqual({authorizationStatus: AuthorizationStatus.Auth, userData: mockUser});
     });
 
     it('should update authorizationStatus to "NO_AUTH" if loginAction rejected', () => {
