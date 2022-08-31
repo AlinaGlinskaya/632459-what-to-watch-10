@@ -7,7 +7,7 @@ import {generateRandomInteger} from '../../utils';
 const films = Array.from({length: 5}, () => makeFakeFilm());
 
 const filters = setFilters(films);
-const activeFilter = filters[generateRandomInteger(0, filters.length)];
+const activeFilter = filters[generateRandomInteger(0, (filters.length - 1))];
 
 describe('Reducer: filterProcess', () => {
 

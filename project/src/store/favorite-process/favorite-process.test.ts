@@ -5,7 +5,7 @@ import {fetchFavoriteFilmsAction, setFavoriteFilmAction} from '../api-actions';
 import {generateRandomInteger} from '../../utils';
 
 const favoriteFilms = Array.from({length: 17}, () => makeFakeFilm());
-const film = favoriteFilms[generateRandomInteger(0, favoriteFilms.length)];
+const film = favoriteFilms[generateRandomInteger(0, (favoriteFilms.length - 1))];
 const updatedFilm = {...film, isFavorite: !film.isFavorite};
 
 const getUpdatedFavorites = () => {
@@ -14,7 +14,7 @@ const getUpdatedFavorites = () => {
     return updatedFavorites;
   }
   const favoriteFilmIndex = favoriteFilms.findIndex((item) => item.id !== updatedFilm.id);
-  const newFavoriteFilms = favoriteFilms;
+  const newFavoriteFilms = [...favoriteFilms];
 
   if (favoriteFilmIndex >= 0) {
     newFavoriteFilms[favoriteFilmIndex] = updatedFilm;

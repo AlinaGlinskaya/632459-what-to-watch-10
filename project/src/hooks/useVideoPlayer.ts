@@ -1,8 +1,9 @@
-import {useState, useEffect, RefObject} from 'react';
+import {useState, useEffect} from 'react';
 import {ChangeEvent} from 'react';
 import {getVideoDurationFormat} from '../utils';
+import {VideoRef} from '../types/types';
 
-const useVideoPlayer = (videoElement: RefObject<HTMLVideoElement>) => {
+const useVideoPlayer = (videoElement: React.MutableRefObject<HTMLVideoElement | null | VideoRef>) => {
 
   const MAX_PROGRESS = 100;
 

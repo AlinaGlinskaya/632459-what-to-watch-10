@@ -138,6 +138,14 @@ export type FavoriteData = {
   status: number
 }
 
+export type VideoRef = {
+  requestFullscreen: () => void;
+  pause: () => void;
+  play: () => void;
+  currentTime: number;
+  duration: number;
+}
+
 export type TypedDispatch = ThunkDispatch<ReduxState, AxiosInstance, AnyAction>;
 export type TypedThunk<ReturnType = void> = ThunkAction<
   ReturnType,
