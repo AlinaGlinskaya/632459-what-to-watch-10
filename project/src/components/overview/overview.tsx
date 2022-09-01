@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilmLevel } from '../../const';
+import {FilmLevel} from '../../const';
 import {FilmCardProps} from '../../types/types';
 
 function Overview({film}: FilmCardProps): JSX.Element {

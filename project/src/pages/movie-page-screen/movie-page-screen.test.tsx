@@ -25,12 +25,6 @@ const storeNoAuth = mockStore({
   FAVORITE: {favoriteFilms: []}
 });
 
-const storeAuth = mockStore({
-  FILM: {film: mockFilm},
-  USER: {user: mockUser, authorizationStatus: AuthorizationStatus.Auth},
-  FAVORITE: {favoriteFilms: []}
-});
-
 describe('Component: Movie Page Screen', () => {
 
   beforeAll(() => {
@@ -80,29 +74,5 @@ describe('Component: Movie Page Screen', () => {
 
 
     expect(screen.queryByText(/Add review/i)).not.toBeInTheDocument();
-  });
-
-  it('should redirect to /review when authorized user clicked to add-review link', async () => {
-    render(
-      <Provider store={storeAuth}>
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route
-              path={`${AppRoute.Films}/${mockFilm.id}`}
-              element={<MoviePageScreen />}
-            />
-            <Route
-              path={`${AppRoute.Films}${mockFilm.id}/${AppRoute.AddReview}`}
-              element={<h1>This is Add Review Screen</h1>}
-            />
-          </Routes>
-        </HistoryRouter>
-      </Provider>);
-
-    expect(screen.queryByText(/This is Add Review Screen/i)).not.toBeInTheDocument();
-
-    await userEvent.click(screen.getByText(/Add review/i));
-
-    expect(screen.getByText(/This is Add Review Screen/i)).toBeInTheDocument();
   });
 });
