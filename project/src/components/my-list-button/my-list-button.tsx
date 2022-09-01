@@ -3,10 +3,15 @@ import {getFavoriteFilms} from '../../store/favorite-process/selectors';
 import {setFavoriteFilmAction} from '../../store/api-actions';
 import {useDispatch} from 'react-redux';
 import {FilmCardProps, TypedDispatch} from '../../types/types';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {AuthorizationStatus, AppRoute} from '../../const';
+import {useNavigate} from 'react-router-dom';
 
 function MyListButton({film}: FilmCardProps): JSX.Element {
   const dispatch = useDispatch<TypedDispatch>();
+  const navigate = useNavigate();
   const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const favoriteData = {
     filmId: film?.id,
@@ -14,6 +19,9 @@ function MyListButton({film}: FilmCardProps): JSX.Element {
   };
 
   const handleFavoriteButtonClick = () => {
+    if (authorizationStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.SignIn);
+    }
     dispatch(setFavoriteFilmAction(favoriteData));
   };
 
