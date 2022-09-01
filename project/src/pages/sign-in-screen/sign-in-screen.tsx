@@ -45,6 +45,7 @@ function SignInScreen(): JSX.Element {
                 name="user-email"
                 id="user-email"
                 required
+                data-testid="email"
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
@@ -58,6 +59,7 @@ function SignInScreen(): JSX.Element {
                 id="user-password"
                 required
                 pattern='^(?=.*[a-z]).{0,}(?=.*\d).{1,}$'
+                data-testid="password"
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
