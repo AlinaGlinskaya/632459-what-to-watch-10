@@ -10,6 +10,7 @@ import {fetchFilmAction} from '../../store/api-actions';
 import {useAppSelector} from '../../hooks';
 import {getFilm, getIsFilmLoading} from '../../store/film-process/selectors';
 import Spinner from '../spinner/spinner';
+import { AppRoute } from '../../const';
 
 function PlayerScreen(): JSX.Element {
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ function PlayerScreen(): JSX.Element {
   return(
     <div className="player">
       <video
+        data-testid="video"
         src={film.videoLink}
         ref={videoElement}
         className="player__video"
@@ -68,7 +70,7 @@ function PlayerScreen(): JSX.Element {
       >
       </video>
 
-      <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
+      <button type="button" className="player__exit" data-testid="exit" onClick={() => navigate(`${AppRoute.Films}/${film.id}`)}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -90,7 +92,7 @@ function PlayerScreen(): JSX.Element {
               </button>
             ) :
             (
-              <button onClick={handlePlayButtonClick} type="button" className="player__play">
+              <button onClick={handlePlayButtonClick} type="button" className="player__play" data-testid="player-btn">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -99,7 +101,7 @@ function PlayerScreen(): JSX.Element {
             )}
           <div className="player__name">{film.name}</div>
 
-          <button onClick={handleFullScreenButtonClick} type="button" className="player__full-screen">
+          <button onClick={handleFullScreenButtonClick} type="button" className="player__full-screen" data-testid="fullscreen-btn">
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>

@@ -12,17 +12,17 @@ import thunk from 'redux-thunk';
 import { setFilters } from '../../utils';
 
 const mockFilms = Array.from({length: 25}, () => makeFakeFilm());
-const mockFavoriteFilms = Array.from({length: 5}, () => makeFakeFilm());
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
 const mockStore = configureMockStore(middlewares);
 const history = createMemoryHistory();
+const filters = setFilters(mockFilms);
 
 const store = mockStore({
-  FAVORITE: {favoriteFilms: mockFavoriteFilms},
+  FAVORITE: {favoriteFilms: []},
   FILM: {films: mockFilms},
-  FILTER: {filters: []},
+  FILTER: {filters: filters},
   USER: {authorizationStatus: AuthorizationStatus.NoAuth}
 });
 

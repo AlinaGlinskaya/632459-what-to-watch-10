@@ -11,7 +11,7 @@ const randomDate = (start: Date, end: Date): number => new Date(start.getTime() 
 const makeFakeFullname = () => `${name.firstName()} ${name.lastName()}`;
 
 export const makeFakeFilm = (): FilmMain => ({
-  id: generateRandomInteger(0, 50),
+  id: generateRandomInteger(0, 500),
   name: name.title(),
   posterImage: image.imageUrl(),
   previewImage: image.imageUrl(),
@@ -25,7 +25,7 @@ export const makeFakeFilm = (): FilmMain => ({
   director: makeFakeFullname(),
   starring: Array.from({length: generateRandomInteger(1, 7)}, () => makeFakeFullname()),
   runTime: generateRandomInteger(1, 180),
-  genre: genres[generateRandomInteger(0, genres.length)],
+  genre: genres[generateRandomInteger(0, genres.length - 1)],
   released: randomDate(new Date(1980, 0, 1), new Date()),
   isFavorite: Boolean(generateRandomInteger(0, 1))
 } as FilmMain);
