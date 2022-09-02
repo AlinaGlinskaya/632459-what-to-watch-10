@@ -22,7 +22,7 @@ function UserBlockAuth({avatarUrl}: UserBlockProps): JSX.Element | null {
     ?
     <ul className="user-block">
       <li className="user-block__item">
-        <div className="user-block__avatar" onClick={() => navigate(AppRoute.MyList)}>
+        <div className="user-block__avatar" data-testid="link-mylist" onClick={() => navigate(AppRoute.MyList)}>
           <img src={avatarUrl} alt="User avatar" width="63" height="63" />
         </div>
       </li>

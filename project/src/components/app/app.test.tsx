@@ -15,26 +15,27 @@ const mockStore = configureMockStore(middlewares);
 
 const mockFilms = Array.from({length: 4}, () => makeFakeFilm());
 const mockFilm = makeFakeFilm();
+const mockFavoriteFilms = Array.from({length: 2}, () => makeFakeFilm());
 
 const store = mockStore({
   USER: {authorizationStatus: AuthorizationStatus.Auth},
   FILM: {isDataLoading: false, film: mockFilm, isServerAvailable: true, films: mockFilms},
   FILTER: {activeFilter: FILTER_DEFAULT},
-  FAVORITE: {favoriteFilms: mockFilms}
+  FAVORITE: {favoriteFilms: mockFavoriteFilms}
 });
 
 const storeLoadingFilms = mockStore({
   USER: {authorizationStatus: AuthorizationStatus.Auth},
   FILM: {isDataLoading: true, film: mockFilm, isServerAvailable: true, films: mockFilms},
   FILTER: {activeFilter: FILTER_DEFAULT},
-  FAVORITE: {favoriteFilms: mockFilms}
+  FAVORITE: {favoriteFilms: mockFavoriteFilms}
 });
 
 const storeServerNotAvailable = mockStore({
   USER: {authorizationStatus: AuthorizationStatus.Auth},
   FILM: {isDataLoading: false, film: mockFilm, isServerAvailable: false},
   FILTER: {activeFilter: FILTER_DEFAULT},
-  FAVORITE: {favoriteFilms: mockFilms}
+  FAVORITE: {favoriteFilms: mockFavoriteFilms}
 });
 
 const history = createMemoryHistory();

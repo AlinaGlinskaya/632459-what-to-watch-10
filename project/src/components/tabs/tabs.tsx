@@ -49,13 +49,13 @@ function Tabs(): JSX.Element {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${activeTab === TabName.Overview ? 'film-nav__item--active' : ''}`}>
+          <li data-testid="overview" className={`film-nav__item ${activeTab === TabName.Overview ? 'film-nav__item--active' : ''}`}>
             <a href="/#" id={'overview'} onClick={handleTabClick} className="film-nav__link">Overview</a>
           </li>
-          <li className={`film-nav__item ${activeTab === TabName.Details ? 'film-nav__item--active' : ''}`}>
+          <li data-testid="details" className={`film-nav__item ${activeTab === TabName.Details ? 'film-nav__item--active' : ''}`}>
             <a href="/#" id={'details'} onClick={handleTabClick} className="film-nav__link">Details</a>
           </li>
-          <li className={`film-nav__item ${activeTab === TabName.Reviews ? 'film-nav__item--active' : ''}`}>
+          <li data-testid="reviews" className={`film-nav__item ${activeTab === TabName.Reviews ? 'film-nav__item--active' : ''}`}>
             <a href="/#" id={'reviews'} onClick={handleTabClick} className="film-nav__link">Reviews</a>
           </li>
         </ul>

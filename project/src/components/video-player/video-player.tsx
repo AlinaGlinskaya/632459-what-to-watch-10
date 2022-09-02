@@ -33,6 +33,7 @@ function VideoPlayer({src, poster, isPlaying}: VideoPlayerProps): JSX.Element {
       src={src}
       poster={poster}
       muted
+      data-testid="video"
     />
   );
 }
