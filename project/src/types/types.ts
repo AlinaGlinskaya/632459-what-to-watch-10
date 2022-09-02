@@ -90,7 +90,7 @@ export type FilterProcess = {
   activeFilter: string,
   films: FilmMain[],
   filters: (Genre | 'All')[],
-  renderedFilmsCount: number,
+  renderedFilmsCount: number
 }
 
 export type FavoriteProcess = {

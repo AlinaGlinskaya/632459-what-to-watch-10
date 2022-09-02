@@ -1,9 +1,9 @@
 import Filters from '../filters/filters';
 import FilmsList from '../films-list/films-list';
 import ShowMoreButton from '../show-more-button/show-more-button';
-import { useAppSelector } from '../../hooks';
-import { getFilteredFilms } from '../../store/filter-process/selectors';
-import { getRenderedFilmsCount } from '../../store/filter-process/selectors';
+import {useAppSelector} from '../../hooks';
+import {getFilteredFilms} from '../../store/filter-process/selectors';
+import {getRenderedFilmsCount} from '../../store/filter-process/selectors';
 
 function FilmsWithFilters(): JSX.Element {
   const filteredFilms = useAppSelector(getFilteredFilms);

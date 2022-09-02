@@ -10,6 +10,7 @@ function FilmCard({film}: FilmCardProps) {
 
   return (
     <article className="small-film-card catalog__films-card"
+      data-testid='film-card'
       onMouseEnter={() =>
       {
         timeout = setTimeout(() => setIsPlaying(true), 1000);

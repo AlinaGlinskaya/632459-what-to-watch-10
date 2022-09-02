@@ -10,7 +10,7 @@ const initialState: FilterProcess = {
   activeFilter: FILTER_DEFAULT,
   films: [],
   filters: [],
-  renderedFilmsCount: FILMS_PER_STEP,
+  renderedFilmsCount: FILMS_PER_STEP
 };
 
 const setFilters = (films: FilmMain[]) => {
