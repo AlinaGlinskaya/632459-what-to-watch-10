@@ -13,9 +13,8 @@ import {useAppSelector} from '../../hooks';
 import Spinner from '../../pages/spinner/spinner';
 import {getIsDataLoading, getIsServerAvailable} from '../../store/film-process/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import ServerError from '../server-error/server-error';
+import { Fragment } from 'react';
 
 function App(): JSX.Element {
   const isDataLoading = useAppSelector(getIsDataLoading);
@@ -31,7 +30,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
+    <Fragment>
       <ScrollToTop />
       <Routes>
         <Route
@@ -55,7 +54,7 @@ function App(): JSX.Element {
           path="*" element={<NotFoundScreen />}
         />
       </Routes>
-    </HistoryRouter>
+    </Fragment>
   );
 }
 
